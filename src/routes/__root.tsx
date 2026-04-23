@@ -1,4 +1,5 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Github } from "lucide-react";
 
 import appCss from "../styles.css?url";
 
@@ -67,41 +68,52 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   return (
     <>
-      <div className="fixed top-4 right-4 z-50 rounded bg-red-600 px-2 py-1 text-xs font-bold text-white shadow-lg pointer-events-none uppercase tracking-wider">
-        Demo Site
-      </div>
       <nav className="border-b bg-background">
-        <div className="mx-auto max-w-6xl px-6 flex h-14 items-center gap-6">
-          <Link
-            to="/"
-            className="text-sm font-medium transition-colors hover:text-primary [&.active]:text-primary text-muted-foreground"
-          >
-            Showcase
-          </Link>
-          <Link
-            to="/working-groups"
-            className="text-sm font-medium transition-colors hover:text-primary [&.active]:text-primary text-muted-foreground"
-          >
-            Working Groups
-          </Link>
-          <Link
-            to="/organization"
-            className="text-sm font-medium transition-colors hover:text-primary [&.active]:text-primary text-muted-foreground"
-          >
-            Organization
-          </Link>
-          <Link
-            to="/training"
-            className="text-sm font-medium transition-colors hover:text-primary [&.active]:text-primary text-muted-foreground"
-          >
-            Training
-          </Link>
-          <Link
-            to="/communication"
-            className="text-sm font-medium transition-colors hover:text-primary [&.active]:text-primary text-muted-foreground"
-          >
-            Communication
-          </Link>
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 flex h-14 items-center justify-between">
+          <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto no-scrollbar pr-4">
+            <Link
+              to="/"
+              className="text-sm font-medium transition-colors hover:text-primary [&.active]:text-primary text-muted-foreground whitespace-nowrap"
+            >
+              Showcase
+            </Link>
+            <Link
+              to="/working-groups"
+              className="text-sm font-medium transition-colors hover:text-primary [&.active]:text-primary text-muted-foreground whitespace-nowrap"
+            >
+              Working Groups
+            </Link>
+            <Link
+              to="/organization"
+              className="text-sm font-medium transition-colors hover:text-primary [&.active]:text-primary text-muted-foreground whitespace-nowrap"
+            >
+              Organization
+            </Link>
+            <Link
+              to="/training"
+              className="text-sm font-medium transition-colors hover:text-primary [&.active]:text-primary text-muted-foreground whitespace-nowrap"
+            >
+              Training
+            </Link>
+            <Link
+              to="/communication"
+              className="text-sm font-medium transition-colors hover:text-primary [&.active]:text-primary text-muted-foreground whitespace-nowrap"
+            >
+              Communication
+            </Link>
+          </div>
+          <div className="flex items-center pl-2 sm:pl-4 border-l">
+            <a
+              href="https://github.com/leifdenby/e-ai-website"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2 text-sm font-medium whitespace-nowrap"
+              title="View source on GitHub"
+            >
+              <Github className="h-5 w-5" />
+              <span className="hidden sm:inline-block">Contribute</span>
+            </a>
+          </div>
         </div>
       </nav>
       <Outlet />
