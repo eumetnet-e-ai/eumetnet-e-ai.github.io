@@ -1,12 +1,14 @@
 # EUMETNET ML Applications Database
 #
 # Each entry describes one machine-learning application in weather/climate.
-# To add a new example, append a new item with all required fields.
+# To add a new example:
+#   1. Append a new item below with all required fields.
+#   2. Place a cover image at: src/assets/applications/<id>.jpg
+#      (or .png / .webp). The file name MUST match the `id` field.
 #
 # Schema:
-#   id:           string, unique, url-safe (used as the route slug)
+#   id:           string, unique, url-safe (used as the route slug AND image filename)
 #   title:        string, display name
-#   image:        string, URL to a representative image
 #   short:        string, one-line teaser shown on the gallery tile
 #   description:  string, long-form description (markdown-ish plain text)
 #   pipeline:     one of: observation_qa | observation_dataset_processing | forecasting | postprocessing
@@ -24,7 +26,6 @@
 applications:
   - id: pangu-weather-emulator
     title: Pangu-Weather Emulator
-    image: https://images.unsplash.com/photo-1561484930-998b6a7b22e8?w=1200&q=80
     short: Global medium-range forecasting with a 3D Earth-specific transformer.
     description: >
       A deep-learning weather prediction model that emulates global numerical weather
@@ -50,7 +51,6 @@ applications:
 
   - id: radar-nowcasting-pysteps-ml
     title: Radar Nowcasting (pysteps + ML)
-    image: https://images.unsplash.com/photo-1527482797697-8795b05a13fe?w=1200&q=80
     short: Hybrid optical-flow + deep learning precipitation nowcasting up to 6h.
     description: >
       Combines the operational pysteps nowcasting library with a U-Net post-processor
@@ -73,7 +73,6 @@ applications:
 
   - id: cnn-front-detection
     title: CNN Front Detection
-    image: https://images.unsplash.com/photo-1532178910-7815d6919875?w=1200&q=80
     short: Automatic detection of cold/warm/occluded fronts from ERA5 fields.
     description: >
       A convolutional segmentation network trained on hand-labelled synoptic charts
@@ -96,7 +95,6 @@ applications:
 
   - id: statistical-downscaling-gan
     title: Statistical Downscaling GAN
-    image: https://images.unsplash.com/photo-1419833173245-f59e1b93f9ee?w=1200&q=80
     short: Generative downscaling of precipitation from 25 km to 1 km.
     description: >
       Conditional GAN producing physically plausible high-resolution precipitation
@@ -115,7 +113,6 @@ applications:
 
   - id: aws-qc-anomaly
     title: Automatic Weather Station QC
-    image: https://images.unsplash.com/photo-1561553873-e8491a564fd0?w=1200&q=80
     short: Anomaly detection on surface station observations.
     description: >
       Isolation-forest and autoencoder ensemble for real-time quality control of
@@ -137,7 +134,6 @@ applications:
 
   - id: satellite-cloud-classification
     title: Satellite Cloud Classification
-    image: https://images.unsplash.com/photo-1505533321630-975218a5f66f?w=1200&q=80
     short: Pixel-wise cloud type classification from MTG-I imagery.
     description: >
       Transformer-based segmentation of cloud regimes from Meteosat Third Generation
@@ -159,7 +155,6 @@ applications:
 
   - id: ensemble-postprocessing-drn
     title: Ensemble Post-processing (DRN)
-    image: https://images.unsplash.com/photo-1530908295418-a12e326966ba?w=1200&q=80
     short: Distributional regression networks for calibrated 2 m temperature.
     description: >
       Neural network producing calibrated parametric forecast distributions from raw
