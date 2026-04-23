@@ -1,4 +1,4 @@
-import { getDiagramNode } from "./modules";
+import { getDiagramNode } from "./organization_modules";
 
 export interface OrgItem {
   id: string;

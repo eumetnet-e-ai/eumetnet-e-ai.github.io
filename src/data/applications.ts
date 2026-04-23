@@ -1,6 +1,6 @@
 import yaml from "js-yaml";
 import yamlSource from "./applications.yaml?raw";
-import { getCategory } from "./modules";
+import { getCategory } from "./organization_modules";
 
 // Eagerly import all cover images from src/assets/applications.
 // File name (without extension) must match the application `id`.
@@ -35,7 +35,7 @@ export interface Application {
   image: string;
   short: string;
   description: string;
-  modules: string[];
+  organization_modules: string[];
   domains: string[];
   organization: string;
   eumetnet_member: boolean;

@@ -1,5 +1,5 @@
 import yaml from "js-yaml";
-import yamlSource from "./modules.yaml?raw";
+import yamlSource from "./organization_modules.yaml?raw";
 
 export interface WgBadge {
   label: string;

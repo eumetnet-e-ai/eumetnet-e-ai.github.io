@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { applications, getModuleLabel } from "@/data/applications";
-import { categoriesData } from "@/data/modules";
+import { categoriesData } from "@/data/organization_modules";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
 });
 
 const MODULE_FILTERS: Array<{ value: string | "all"; label: string }> = [
-  { value: "all", label: "All modules" },
+  { value: "all", label: "All organization modules" },
   ...categoriesData.map(m => ({ value: m.id, label: m.title }))
 ];
 
@@ -43,7 +43,7 @@ function GalleryPage() {
 
   const filtered = applications.filter(
     (a) =>
-      (filter === "all" || a.modules.includes(filter)) &&
+      (filter === "all" || a.organization_modules?.includes(filter)) &&
       (domain === "all" || a.domains.includes(domain)),
   );
 
@@ -121,7 +121,7 @@ function GalleryPage() {
                       className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute left-3 top-3 flex flex-col gap-1">
-                      {app.modules.map(modId => (
+                      {app.organization_modules?.map(modId => (
                         <Badge key={modId} variant="secondary" className="backdrop-blur-sm bg-white/80">
                           {getModuleLabel(modId)}
                         </Badge>

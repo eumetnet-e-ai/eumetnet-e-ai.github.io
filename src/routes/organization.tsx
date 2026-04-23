@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { organizationData } from "@/data/organization";
-import { getDiagramNode } from "@/data/modules";
+import { getDiagramNode } from "@/data/organization_modules";
 
 export const Route = createFileRoute("/organization")({
   head: () => ({
