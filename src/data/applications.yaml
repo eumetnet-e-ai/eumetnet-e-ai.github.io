@@ -1,28 +1,4 @@
 applications:
-  - id: cnn-front-detection
-    title: CNN Front Detection
-    short: Automatic detection of cold/warm/occluded fronts from ERA5 fields.
-    description: |
-      A convolutional segmentation network trained on hand-labelled synoptic charts to detect frontal systems in reanalysis and NWP output. Useful for climatologies and downstream impact studies.
-    organization_modules:
-      - post-processing
-    domains:
-      - front_detection
-      - feature_detection
-    organization: DWD
-    eumetnet_member: true
-    packages:
-      - name: tensorflow
-        url: https://tensorflow.org
-        maintained_by_eumetnet: false
-      - name: xarray
-        url: https://xarray.dev
-        maintained_by_eumetnet: false
-      - name: cfgrib
-        url: https://github.com/ecmwf/cfgrib
-        maintained_by_eumetnet: true
-    working_groups:
-      - wg-13
   - id: statistical-downscaling-gan
     title: Statistical Downscaling GAN
     short: Generative downscaling of precipitation from 25 km to 1 km.
