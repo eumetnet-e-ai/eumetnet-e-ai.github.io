@@ -2,6 +2,9 @@ working_groups:
   - id: wg-1
     name: WG 1 AI Data Readiness and Curation
     emoji: 🗄️
+    resources:
+      GitHub Repository: https://github.com/eumetnet-e-ai/wg1_data_curation
+      RocketChat: https://chat.europeanweather.cloud/channel/e-ai_wg1_data_curation
     facilitators:
       - name: Roope Tervo
         email: roope.tervo@eumetsat.int
@@ -10,8 +13,11 @@ working_groups:
       - name: Stephan Siemen
         email: stephan.siemen@ecmwf.int
   - id: wg-2
-    name: WG 2 Large Language Model (LLM) Implementation and Services with AI-based Information Condensation and Communication, AI-based High Impact Weather (HIW) Warnings, Personalisation (formerly WG 5)
+    name: WG 2 Large Language Models (LLMs)
     emoji: 💬
+    description: Implementation and Services with AI-based Information Condensation and Communication, AI-based High Impact Weather (HIW) Warnings, Personalisation
+    resources:
+      GitHub Repository: https://github.com/eumetnet-e-ai/wg2_llm
     facilitators:
       - name: Johannes Schenk
         email: Johannes.Schenk@dwd.de
@@ -20,6 +26,8 @@ working_groups:
   - id: wg-3
     name: WG 3 AI Operationalisation, Maintenance and QC, MLOps with AI Frameworks and Libraries (formerly WG 9)
     emoji: ⚙️
+    resources:
+      GitHub Repository: https://github.com/eumetnet-e-ai/wg3_operations
     facilitators:
       - name: Gabriela Aznar Siguan
         email: gabriela.aznar@meteoswiss.ch
@@ -66,6 +74,8 @@ working_groups:
   - id: wg-8
     name: WG 8 Ethics Questions
     emoji: ⚖️
+    resources:
+      GitHub Repository: https://github.com/eumetnet-e-ai/wg08_ethics
   - id: wg-10
     name: WG 10 Data Rescue
     emoji: 🛟
