@@ -3,7 +3,7 @@ import { workingGroups } from "@/data/working-groups";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { useState, useEffect } from "react";
-import { MessageSquare, Mail, Github, Globe } from "lucide-react";
+import { MessageSquare, Mail, Github, Globe, ExternalLink } from "lucide-react";
 
 export const Route = createFileRoute("/working-groups")({
   head: () => ({
@@ -95,26 +95,55 @@ function WorkingGroupsPage() {
                     <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">
                       Resources
                     </h4>
-                    <div className="space-y-4">
-                      <ul className="list-inside list-disc text-base space-y-1">
-                        {Object.entries(selectedWg.resources).map(([label, url], i) => (
-                          <li key={i}>
-                            {url ? (
-                              <a
-                                href={url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-primary hover:underline"
-                              >
-                                {label}
-                              </a>
-                            ) : (
-                              <span>{label}</span>
-                            )}
+                    <ul className="space-y-4">
+                      {Object.entries(selectedWg.resources).map(([label, url]) => {
+                        if (!url) return null;
+                        
+                        let Icon = ExternalLink;
+                        let iconBg = "bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400";
+                        let subLabel = "External resource";
+                        
+                        if (label.toLowerCase().includes('slack') || label.toLowerCase().includes('chat')) {
+                          Icon = MessageSquare;
+                          iconBg = "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400";
+                          subLabel = "Join the conversation";
+                        } else if (label.toLowerCase().includes('github')) {
+                          Icon = Github;
+                          iconBg = "bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300";
+                          subLabel = "Source code & issues";
+                        } else if (label.toLowerCase().includes('mail')) {
+                          Icon = Mail;
+                          iconBg = "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400";
+                          subLabel = "Mailing List";
+                        } else if (label.toLowerCase().includes('website')) {
+                          Icon = Globe;
+                          iconBg = "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400";
+                        }
+
+                        return (
+                          <li key={label}>
+                            <a 
+                              href={url} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="group flex items-start gap-3"
+                            >
+                              <div className={`p-1.5 rounded-md mt-0.5 ${iconBg}`}>
+                                <Icon className="h-4 w-4" />
+                              </div>
+                              <div>
+                                <div className="text-sm font-medium group-hover:text-primary transition-colors break-all">
+                                  {label.replace('mailto:', '')}
+                                </div>
+                                <div className="text-xs text-muted-foreground line-clamp-1">
+                                  {subLabel}
+                                </div>
+                              </div>
+                            </a>
                           </li>
-                        ))}
-                      </ul>
-                    </div>
+                        );
+                      })}
+                    </ul>
                   </div>
                 )}
 
