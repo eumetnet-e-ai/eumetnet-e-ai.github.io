@@ -41,7 +41,22 @@ working_groups:
         email: lcd@dmi.dk
       - name: Irene Schicker
         email: irene.schicker@geosphere.at
-    description: The aim of the MLCast community is to organize the joint-development of an open-source Python package that unifies machine-learning models for nowcasting. We envision a collaborative GitHub organization where all contributors have equal ownership. The package will provide a simple, clean API for calling pre-trained ML-based nowcasting algorithms, allow for the training of new models, and include functionality to benchmark models using shared testing datasets (e.g., on European Weather Cloud S3). It will be rigorously tested via CI/CD using GitHub Actions with GPU support. Furthermore, we aim to build a community that meets regularly to discuss scientific and technical advancements in ML for nowcasting. This collective effort ensures that institutes with GPU access can train models, while those with limited resources can actively help develop, test, and ultimately use these advanced techniques.
+    description: |-
+      **Aim**
+
+      The aim of the MLCast community is to organize our joint-development of an open-source Python package that unifies machine-learning models for nowcasting. Please contribute to this document by adding/commenting/editing anywhere you would like.
+
+      In more detail, we're aiming for:
+
+      *   **Open-source development** through a new GitHub organization where all contributors have equal ownership in the development software.
+      *   **A single Python package** which:
+          *   has simple and clean API for calling different pre-trained ML based nowcasting algorithms
+          *   allows for training of ML based nowcasting algorithms
+          *   contains functionality to benchmark models including retrieving testing datasets (we envisage storing these on European Weather Cloud S3)
+          *   is tested through CI/CD using GitHub Actions (ideally running on GPUs)
+      *   **A community** that meets regularly to discuss the package development and further scientific development of techniques for nowcasting with ML.
+
+      This collective gives the chance to spread the benefit of access to GPUs for nowcasting: institutes with access to GPUs can train the models, and institutes with little access to GPUs can help develop, test, and ultimately use the models.
   - id: wg-7
     name: WG 7 AI in the EUMETNET Aviation Support Programme
     emoji: ✈️

@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { useState, useEffect } from "react";
 import { MessageSquare, Mail, Github, Globe, ExternalLink } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 
 export const Route = createFileRoute("/working-groups")({
   head: () => ({
@@ -83,9 +84,9 @@ function WorkingGroupsPage() {
                 </div>
               )}
               {selectedWg.description && (
-                <p className="text-foreground/80 leading-relaxed mt-4 text-sm sm:text-base">
-                  {selectedWg.description}
-                </p>
+                <div className="mt-6 prose prose-sm sm:prose-base dark:prose-invert prose-p:leading-relaxed prose-a:text-primary max-w-none text-foreground/90">
+                  <ReactMarkdown>{selectedWg.description}</ReactMarkdown>
+                </div>
               )}
             </CardHeader>
             <CardContent className="pt-6">
