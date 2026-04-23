@@ -13,7 +13,8 @@ export const Route = createFileRoute("/training")({
       { title: "EUMETNET ML Training & Workshops" },
       {
         name: "description",
-        content: "Discover training materials, tutorials, and workshops for machine learning across EUMETNET.",
+        content:
+          "Discover training materials, tutorials, and workshops for machine learning across EUMETNET.",
       },
     ],
   }),
@@ -44,8 +45,8 @@ function TrainingPage() {
             Training & Workshops
           </h1>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            A collection of training materials, tutorials, and in-person workshops to 
-            advance machine learning integration in weather and climate.
+            A collection of training materials, tutorials, and in-person workshops to advance
+            machine learning integration in weather and climate.
           </p>
         </div>
       </header>
@@ -64,12 +65,17 @@ function TrainingPage() {
 
         {filteredTrainingData.length === 0 ? (
           <div className="text-center text-muted-foreground py-12 border rounded-lg bg-card/50 border-dashed">
-            {searchQuery ? "No matching training materials found." : "No training materials currently listed."}
+            {searchQuery
+              ? "No matching training materials found."
+              : "No training materials currently listed."}
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {filteredTrainingData.map((course) => (
-              <Card key={course.id} className="h-full flex flex-col overflow-hidden transition-shadow hover:shadow-md border-primary/20">
+              <Card
+                key={course.id}
+                className="h-full flex flex-col overflow-hidden transition-shadow hover:shadow-md border-primary/20"
+              >
                 <CardHeader className="bg-muted/30 border-b pb-4">
                   <div className="flex justify-between items-start gap-4">
                     <div>
@@ -91,8 +97,12 @@ function TrainingPage() {
                   </p>
                   {course.tags && course.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2 mt-auto">
-                      {course.tags.map(tag => (
-                        <Badge key={tag} variant="outline" className="bg-background text-xs font-normal">
+                      {course.tags.map((tag) => (
+                        <Badge
+                          key={tag}
+                          variant="outline"
+                          className="bg-background text-xs font-normal"
+                        >
                           {tag}
                         </Badge>
                       ))}
@@ -126,10 +136,7 @@ function TrainingPage() {
       <footer className="mt-16 border-t bg-card">
         <div className="mx-auto max-w-6xl px-6 py-6 text-sm text-muted-foreground">
           Add new entries by editing{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-xs">
-            src/data/training.yaml
-          </code>
-          .
+          <code className="rounded bg-muted px-1.5 py-0.5 text-xs">src/data/training.yaml</code>.
         </div>
       </footer>
     </div>

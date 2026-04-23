@@ -49,6 +49,6 @@ The application will be available at `http://localhost:5173` (or the port specif
 
 ## Deployment
 
-The application is automatically deployed to GitHub Pages whenever changes are pushed to the `main` branch. The deployment process is handled by GitHub Actions (`.github/workflows/deploy-pages.yml`). 
+The application is automatically deployed to GitHub Pages whenever changes are pushed to the `main` branch. The deployment process is handled by GitHub Actions (`.github/workflows/deploy-pages.yml`).
 
 Because it is deployed to a subdirectory (`/climate-ml-showcase/`), the Vite configuration and TanStack Router are specifically set up to use the `BASE_URL` environment variable during the build step.

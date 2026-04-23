@@ -192,7 +192,7 @@ applications:
     working_groups:
       - ats
   - id: dawid-natural-language
-    title: 'DAWID: Natural Language Services'
+    title: "DAWID: Natural Language Services"
     short: Natural Language Services for meteorology
     description: |
       Natural language processing services and models tailored for meteorological  applications and automated forecast generation.
@@ -206,7 +206,7 @@ applications:
     working_groups:
       - wg-2
   - id: data-curation-opera
-    title: 'Data Curation: AI-ready OPERA-SEVIRI'
+    title: "Data Curation: AI-ready OPERA-SEVIRI"
     short: AI-ready dataset collaboration between EUMETNET and EUMETSAT
     description: |
       Curating and preparing an AI-ready OPERA-SEVIRI dataset to facilitate  machine learning training and research across European weather services.

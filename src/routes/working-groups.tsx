@@ -24,7 +24,7 @@ function WorkingGroupsPage() {
   const location = useLocation();
 
   useEffect(() => {
-    const hash = location.hash ? location.hash.replace('#', '') : '';
+    const hash = location.hash ? location.hash.replace("#", "") : "";
     if (hash && workingGroups.some((wg) => wg.id === hash)) {
       setSelectedId(hash);
     }
@@ -99,33 +99,41 @@ function WorkingGroupsPage() {
                     <ul className="space-y-4">
                       {Object.entries(selectedWg.resources).map(([label, url]) => {
                         if (!url) return null;
-                        
+
                         let Icon = ExternalLink;
-                        let iconBg = "bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400";
+                        let iconBg =
+                          "bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400";
                         let subLabel = "External resource";
-                        
-                        if (label.toLowerCase().includes('slack') || label.toLowerCase().includes('chat')) {
+
+                        if (
+                          label.toLowerCase().includes("slack") ||
+                          label.toLowerCase().includes("chat")
+                        ) {
                           Icon = MessageSquare;
-                          iconBg = "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400";
+                          iconBg =
+                            "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400";
                           subLabel = "Join the conversation";
-                        } else if (label.toLowerCase().includes('github')) {
+                        } else if (label.toLowerCase().includes("github")) {
                           Icon = Github;
-                          iconBg = "bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300";
+                          iconBg =
+                            "bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300";
                           subLabel = "Source code & issues";
-                        } else if (label.toLowerCase().includes('mail')) {
+                        } else if (label.toLowerCase().includes("mail")) {
                           Icon = Mail;
-                          iconBg = "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400";
+                          iconBg =
+                            "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400";
                           subLabel = "Mailing List";
-                        } else if (label.toLowerCase().includes('website')) {
+                        } else if (label.toLowerCase().includes("website")) {
                           Icon = Globe;
-                          iconBg = "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400";
+                          iconBg =
+                            "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400";
                         }
 
                         return (
                           <li key={label}>
-                            <a 
-                              href={url} 
-                              target="_blank" 
+                            <a
+                              href={url}
+                              target="_blank"
                               rel="noopener noreferrer"
                               className="group flex items-start gap-3"
                             >
@@ -134,7 +142,7 @@ function WorkingGroupsPage() {
                               </div>
                               <div>
                                 <div className="text-sm font-medium group-hover:text-primary transition-colors break-all">
-                                  {label.replace('mailto:', '')}
+                                  {label.replace("mailto:", "")}
                                 </div>
                                 <div className="text-xs text-muted-foreground line-clamp-1">
                                   {subLabel}
@@ -162,7 +170,8 @@ function WorkingGroupsPage() {
                               href={`mailto:${f.email}`}
                               className="text-base text-primary hover:underline"
                             >
-                              {f.name} <span className="text-muted-foreground text-sm">({f.email})</span>
+                              {f.name}{" "}
+                              <span className="text-muted-foreground text-sm">({f.email})</span>
                             </a>
                           ))}
                         </div>
@@ -180,7 +189,8 @@ function WorkingGroupsPage() {
                               href={`mailto:${c.email}`}
                               className="text-base text-primary hover:underline"
                             >
-                              {c.name} <span className="text-muted-foreground text-sm">({c.email})</span>
+                              {c.name}{" "}
+                              <span className="text-muted-foreground text-sm">({c.email})</span>
                             </a>
                           ))}
                         </div>
@@ -193,7 +203,7 @@ function WorkingGroupsPage() {
           </Card>
         )}
       </main>
-      
+
       <footer className="mt-16 border-t bg-card">
         <div className="mx-auto max-w-6xl px-6 py-6 text-sm text-muted-foreground">
           Add new entries by editing{" "}

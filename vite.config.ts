@@ -13,7 +13,7 @@ export default defineConfig({
   cloudflare: false,
   tanstackStart: {
     spa: {
-      enabled: true
-    }
-  }
+      enabled: true,
+    },
+  },
 });
