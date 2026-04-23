@@ -39,29 +39,7 @@ function CommunicationPage() {
       <main className="mx-auto max-w-6xl px-6 py-10 space-y-12">
         <section>
           <h2 className="text-2xl font-bold tracking-tight mb-6">General E-AI Community</h2>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {/* Rocket Chat */}
-            <Card className="flex flex-col border-primary/20 shadow-sm hover:shadow-md transition-shadow">
-              <CardHeader className="bg-muted/30 border-b pb-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-primary/10 rounded-md text-primary">
-                    <MessageSquare className="h-6 w-6" />
-                  </div>
-                  <CardTitle className="text-2xl text-primary">Rocket Chat</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent className="pt-6 flex-1 flex flex-col">
-                <p className="text-foreground/80 leading-relaxed mb-8 flex-1 text-lg">
-                  Join our dedicated Rocket Chat workspace to participate in real-time discussions, ask questions, and collaborate with other members of the E-AI community.
-                </p>
-                <Button size="lg" className="w-full sm:w-auto self-start" asChild>
-                  <a href="https://chat.eumetnet.eu" target="_blank" rel="noopener noreferrer">
-                    Open Rocket Chat
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-
+          <div className="grid grid-cols-1 gap-8 max-w-2xl">
             {/* Email / Mailing List */}
             <Card className="flex flex-col border-primary/20 shadow-sm hover:shadow-md transition-shadow">
               <CardHeader className="bg-muted/30 border-b pb-4">
