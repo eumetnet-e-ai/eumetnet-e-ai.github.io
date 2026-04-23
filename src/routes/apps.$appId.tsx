@@ -1,12 +1,12 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ExternalLink, Star } from "lucide-react";
-import { getApplication, pipelineLabels } from "@/data/applications";
+import { getApplication, pipelineLabels, type Application } from "@/data/applications";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/apps/$appId")({
-  loader: ({ params }) => {
+  loader: ({ params }): { app: Application } => {
     const app = getApplication(params.appId);
     if (!app) throw notFound();
     return { app };
