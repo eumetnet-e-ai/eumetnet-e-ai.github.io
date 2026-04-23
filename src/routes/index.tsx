@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
 
 const MODULE_FILTERS: Array<{ value: string | "all"; label: string }> = [
   { value: "all", label: "All organization modules" },
-  ...categoriesData.map(m => ({ value: m.id, label: m.title }))
+  ...categoriesData.map((m) => ({ value: m.id, label: m.title })),
 ];
 
 function GalleryPage() {
@@ -59,9 +59,8 @@ function GalleryPage() {
             Machine Learning in Weather &amp; Climate
           </h1>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            A curated gallery of machine learning applications developed and operated
-            across the EUMETNET community — from observation quality control to
-            forecast post-processing.
+            A curated gallery of machine learning applications developed and operated across the
+            EUMETNET community — from observation quality control to forecast post-processing.
           </p>
         </div>
       </header>
@@ -107,13 +106,8 @@ function GalleryPage() {
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((app) => (
-              <Link
-                key={app.id}
-                to="/apps/$appId"
-                params={{ appId: app.id }}
-                className="group focus:outline-none"
-              >
-                <Card className="overflow-hidden transition-shadow hover:shadow-lg group-focus-visible:ring-2 group-focus-visible:ring-ring h-full flex flex-col">
+              <div key={app.id} className="group relative h-full">
+                <Card className="overflow-hidden transition-shadow hover:shadow-lg focus-within:ring-2 focus-within:ring-ring h-full flex flex-col relative">
                   <div className="relative aspect-[16/10] overflow-hidden bg-muted">
                     <img
                       src={app.image}
@@ -121,9 +115,13 @@ function GalleryPage() {
                       loading="lazy"
                       className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
-                    <div className="absolute left-3 top-3 flex flex-col gap-1">
-                      {app.organization_modules?.map(modId => (
-                        <Badge key={modId} variant="secondary" className="backdrop-blur-sm bg-white/80">
+                    <div className="absolute left-3 top-3 flex flex-col gap-1 z-10">
+                      {app.organization_modules?.map((modId) => (
+                        <Badge
+                          key={modId}
+                          variant="secondary"
+                          className="backdrop-blur-sm bg-white/80"
+                        >
                           {getModuleLabel(modId)}
                         </Badge>
                       ))}
@@ -132,28 +130,34 @@ function GalleryPage() {
                   <div className="flex flex-1 flex-col p-5 relative">
                     <div className="flex justify-between items-start gap-2 mb-2">
                       <h2 className="text-lg font-semibold leading-tight text-foreground">
-                        {app.title}
+                        <Link
+                          to="/apps/$appId"
+                          params={{ appId: app.id }}
+                          className="focus:outline-none before:absolute before:inset-0 before:z-0"
+                        >
+                          {app.title}
+                        </Link>
                       </h2>
                       {app.working_groups && app.working_groups.length > 0 && (
-                        <div className="flex gap-1 flex-wrap justify-end shrink-0">
-                          {app.working_groups.map(wgId => {
-                            const wg = workingGroups.find(w => w.id === wgId);
+                        <div className="flex gap-1 flex-wrap justify-end shrink-0 relative z-10">
+                          {app.working_groups.map((wgId) => {
+                            const wg = workingGroups.find((w) => w.id === wgId);
                             if (!wg) return null;
                             return (
                               <Link
                                 key={wgId}
                                 to="/working-groups"
                                 hash={wgId}
-                                className="z-10"
+                                className="block"
                                 onClick={(e) => e.stopPropagation()}
                               >
-                                <Badge 
-                                  variant="outline" 
+                                <Badge
+                                  variant="outline"
                                   className="text-[10px] bg-slate-800 text-white hover:bg-slate-700 transition-colors cursor-pointer border-transparent shadow-sm px-1.5 py-0"
                                   title={wg.name}
                                 >
                                   {wg.emoji && <span className="mr-1">{wg.emoji}</span>}
-                                  {wgId.toUpperCase().replace('-', '')}
+                                  {wgId.toUpperCase().replace("-", "")}
                                 </Badge>
                               </Link>
                             );
@@ -161,8 +165,10 @@ function GalleryPage() {
                         </div>
                       )}
                     </div>
-                    <p className="flex-1 text-sm text-muted-foreground">{app.short}</p>
-                    <div className="mt-4 flex flex-wrap gap-1.5">
+                    <p className="flex-1 text-sm text-muted-foreground relative z-10">
+                      {app.short}
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-1.5 relative z-10">
                       {app.domains.slice(0, 3).map((d) => (
                         <Badge key={d} variant="outline" className="text-xs">
                           {d.replace(/_/g, " ")}
@@ -171,7 +177,7 @@ function GalleryPage() {
                     </div>
                   </div>
                 </Card>
-              </Link>
+              </div>
             ))}
           </div>
         )}
@@ -180,9 +186,7 @@ function GalleryPage() {
       <footer className="mt-16 border-t bg-card">
         <div className="mx-auto max-w-6xl px-6 py-6 text-sm text-muted-foreground">
           Add new entries by editing{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-xs">
-            src/data/applications.yaml
-          </code>
+          <code className="rounded bg-muted px-1.5 py-0.5 text-xs">src/data/applications.yaml</code>
           .
         </div>
       </footer>

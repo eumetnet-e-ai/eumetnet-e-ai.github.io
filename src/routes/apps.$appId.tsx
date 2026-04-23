@@ -32,9 +32,7 @@ export const Route = createFileRoute("/apps/$appId")({
     <div className="flex min-h-screen items-center justify-center bg-background px-4 text-center">
       <div>
         <h1 className="text-3xl font-bold">Application not found</h1>
-        <p className="mt-2 text-muted-foreground">
-          This entry doesn't exist in the gallery.
-        </p>
+        <p className="mt-2 text-muted-foreground">This entry doesn't exist in the gallery.</p>
         <Link to="/" className="mt-6 inline-block">
           <Button>Back to gallery</Button>
         </Link>
@@ -64,7 +62,7 @@ function AppDetailPage() {
       <main className="mx-auto -mt-20 max-w-4xl px-6 pb-16">
         <div className="rounded-xl border bg-card p-6 shadow-lg sm:p-8">
           <div className="flex flex-wrap items-center gap-2">
-            {app.organization_modules?.map(modId => (
+            {app.organization_modules?.map((modId) => (
               <Badge key={modId}>{getModuleLabel(modId)}</Badge>
             ))}
             {app.eumetnet_member && (
@@ -78,7 +76,9 @@ function AppDetailPage() {
             {app.title}
           </h1>
           <p className="mt-2 text-sm text-muted-foreground">{app.organization}</p>
-          <p className="mt-6 text-base leading-relaxed text-foreground whitespace-pre-wrap">{app.description}</p>
+          <p className="mt-6 text-base leading-relaxed text-foreground whitespace-pre-wrap">
+            {app.description}
+          </p>
 
           {app.working_groups && app.working_groups.length > 0 && (
             <section className="mt-8 bg-muted/40 p-4 rounded-lg border border-border">
@@ -86,23 +86,22 @@ function AppDetailPage() {
                 E-AI Working Groups
               </h2>
               <div className="mt-3 flex flex-wrap gap-2">
-                {app.working_groups.map(wgId => {
-                  const wg = workingGroups.find(w => w.id === wgId);
+                {app.working_groups.map((wgId) => {
+                  const wg = workingGroups.find((w) => w.id === wgId);
                   if (!wg) return null;
                   return (
-                    <Link
-                      key={wgId}
-                      to="/working-groups"
-                      hash={wgId}
-                      className="group"
-                    >
-                      <Badge 
-                        variant="secondary" 
+                    <Link key={wgId} to="/working-groups" hash={wgId} className="group">
+                      <Badge
+                        variant="secondary"
                         className="bg-slate-800 text-white hover:bg-slate-700 transition-colors py-1 px-2.5 text-sm shadow-sm cursor-pointer border-transparent"
                       >
                         {wg.emoji && <span className="mr-1.5">{wg.emoji}</span>}
-                        <span className="font-bold mr-1">{wgId.toUpperCase().replace('-', '')}</span>
-                        <span className="font-normal opacity-90">{wg.name.replace(/^WG \d+ |^ATS /, '')}</span>
+                        <span className="font-bold mr-1">
+                          {wgId.toUpperCase().replace("-", "")}
+                        </span>
+                        <span className="font-normal opacity-90">
+                          {wg.name.replace(/^WG \d+ |^ATS /, "")}
+                        </span>
                       </Badge>
                     </Link>
                   );
@@ -168,8 +167,8 @@ function AppDetailPage() {
               })}
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
-              Packages highlighted with the EUMETNET badge are maintained by an EUMETNET
-              member organization.
+              Packages highlighted with the EUMETNET badge are maintained by an EUMETNET member
+              organization.
             </p>
           </section>
 

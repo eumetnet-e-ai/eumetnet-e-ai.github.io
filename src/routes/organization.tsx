@@ -28,19 +28,20 @@ function OrganizationPage() {
         {/* Pillars Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {organizationData.pillars.map((pillar) => (
-            <div key={pillar.id} className={`${pillar.color} rounded-md border border-gray-300 p-4 shadow-sm flex flex-col`}>
+            <div
+              key={pillar.id}
+              className={`${pillar.color} rounded-md border border-gray-300 p-4 shadow-sm flex flex-col`}
+            >
               <h2 className="text-center font-bold text-gray-800 mb-4 bg-white/50 py-2 rounded">
                 {pillar.title}
               </h2>
-              
+
               <div className="grid grid-cols-2 gap-3 flex-grow">
                 {pillar.items.map((item) => {
                   const cardContent = (
                     <>
                       {item.wgBadge && (
-                        <div
-                          className="absolute -top-2 -right-2 bg-slate-800 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm z-10"
-                        >
+                        <div className="absolute -top-2 -right-2 bg-slate-800 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm z-10">
                           {item.wgBadge.label}
                         </div>
                       )}
@@ -128,7 +129,13 @@ function OrganizationPage() {
         {/* Description Section */}
         <div className="mt-12 text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed bg-white p-8 rounded-lg shadow-sm border border-gray-200 italic">
           <p>
-            The E-AI programme is structured in three modules: a) Data Curation, b) Analysis, Modelling and Post-Processing, and c) Products and Services. By working together on overarching Workflows, AI/ML can be used effectively across the entire value chain while also addressing necessary technical, administrative, and structural requirements. Moreover, the programme offers Communication and Training opportunities to ensure an efficient flow of information on AI/ML developments within and beyond the E-AI programme.
+            The E-AI programme is structured in three modules: a) Data Curation, b) Analysis,
+            Modelling and Post-Processing, and c) Products and Services. By working together on
+            overarching Workflows, AI/ML can be used effectively across the entire value chain while
+            also addressing necessary technical, administrative, and structural requirements.
+            Moreover, the programme offers Communication and Training opportunities to ensure an
+            efficient flow of information on AI/ML developments within and beyond the E-AI
+            programme.
           </p>
         </div>
       </div>

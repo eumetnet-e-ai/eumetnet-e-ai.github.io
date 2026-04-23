@@ -18,7 +18,9 @@ export const Route = createFileRoute("/communication")({
 });
 
 function CommunicationPage() {
-  const wgsWithComms = workingGroups.filter(wg => wg.resources && Object.keys(wg.resources).length > 0);
+  const wgsWithComms = workingGroups.filter(
+    (wg) => wg.resources && Object.keys(wg.resources).length > 0,
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -31,7 +33,8 @@ function CommunicationPage() {
             Communication
           </h1>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Connect with the E-AI community, join discussions, and stay informed about upcoming meetings and training courses.
+            Connect with the E-AI community, join discussions, and stay informed about upcoming
+            meetings and training courses.
           </p>
         </div>
       </header>
@@ -52,14 +55,15 @@ function CommunicationPage() {
               </CardHeader>
               <CardContent className="py-5">
                 <p className="text-sm text-foreground/80 mb-5">
-                  Contact the E-AI Programme Coordination to be informed about upcoming meetings, training courses, and general announcements.
+                  Contact the E-AI Programme Coordination to be informed about upcoming meetings,
+                  training courses, and general announcements.
                 </p>
-                
+
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-muted/40 p-4 rounded-md gap-4 border border-muted">
                   <div>
                     <div className="font-semibold text-foreground">Marek Jacob (DWD)</div>
-                    <a 
-                      href="mailto:marek.jacob@eumetnet.eu" 
+                    <a
+                      href="mailto:marek.jacob@eumetnet.eu"
                       className="text-sm text-primary hover:underline"
                     >
                       marek.jacob[at]eumetnet.eu
@@ -103,50 +107,58 @@ function CommunicationPage() {
                   </CardHeader>
                   <CardContent className="pt-4 flex-1">
                     <ul className="space-y-4">
-                      {wg.resources && Object.entries(wg.resources).map(([label, url]) => {
-                        if (!url) return null;
-                        
-                        let Icon = Globe;
-                        let iconBg = "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400";
-                        let subLabel = "External resource";
-                        
-                        if (label.toLowerCase().includes('slack') || label.toLowerCase().includes('chat')) {
-                          Icon = MessageSquare;
-                          iconBg = "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400";
-                          subLabel = "Join the conversation";
-                        } else if (label.toLowerCase().includes('github')) {
-                          Icon = Github;
-                          iconBg = "bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300";
-                          subLabel = "Source code & issues";
-                        } else if (label.toLowerCase().includes('mail')) {
-                          Icon = Mail;
-                          iconBg = "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400";
-                          subLabel = "Mailing List";
-                        }
+                      {wg.resources &&
+                        Object.entries(wg.resources).map(([label, url]) => {
+                          if (!url) return null;
 
-                        return (
-                          <li key={label}>
-                            <a 
-                              href={url} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="group flex items-start gap-3"
-                            >
-                              <div className={`p-1.5 rounded-md mt-0.5 ${iconBg}`}>
-                                <Icon className="h-4 w-4" />
-                              </div>
-                              <div>
-                                <div className="text-sm font-medium group-hover:text-primary transition-colors break-all">
-                                  {label.replace('mailto:', '')}
+                          let Icon = Globe;
+                          let iconBg =
+                            "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400";
+                          let subLabel = "External resource";
+
+                          if (
+                            label.toLowerCase().includes("slack") ||
+                            label.toLowerCase().includes("chat")
+                          ) {
+                            Icon = MessageSquare;
+                            iconBg =
+                              "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400";
+                            subLabel = "Join the conversation";
+                          } else if (label.toLowerCase().includes("github")) {
+                            Icon = Github;
+                            iconBg =
+                              "bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300";
+                            subLabel = "Source code & issues";
+                          } else if (label.toLowerCase().includes("mail")) {
+                            Icon = Mail;
+                            iconBg =
+                              "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400";
+                            subLabel = "Mailing List";
+                          }
+
+                          return (
+                            <li key={label}>
+                              <a
+                                href={url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group flex items-start gap-3"
+                              >
+                                <div className={`p-1.5 rounded-md mt-0.5 ${iconBg}`}>
+                                  <Icon className="h-4 w-4" />
                                 </div>
-                                <div className="text-xs text-muted-foreground line-clamp-1">
-                                  {subLabel}
+                                <div>
+                                  <div className="text-sm font-medium group-hover:text-primary transition-colors break-all">
+                                    {label.replace("mailto:", "")}
+                                  </div>
+                                  <div className="text-xs text-muted-foreground line-clamp-1">
+                                    {subLabel}
+                                  </div>
                                 </div>
-                              </div>
-                            </a>
-                          </li>
-                        );
-                      })}
+                              </a>
+                            </li>
+                          );
+                        })}
                     </ul>
                   </CardContent>
                 </Card>
