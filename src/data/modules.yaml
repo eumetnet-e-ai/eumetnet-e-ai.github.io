@@ -1,51 +1,11 @@
 modules:
-  - id: radar-db
-    title: RADAR DB
-  - id: text-db
-    title: Weather & Climate Texts DB
-    wgBadge:
-      label: WG8
-      id: wg-8
-  - id: eumetsat
-    title: EUMETSAT AI/ML Project
-    subtitle: Observations, Data Curation and Data Products
-    wgBadge:
-      label: WG4
-      id: wg-4
-  - id: hiw-db
-    title: HIW DB
-  - id: reanalyses
-    title: Global and Regional Reanalyses
-  - id: nowcasting
-    title: AI/ML in Now Casting
-    wgBadge:
-      label: WG6
-      id: wg-6
+  - id: data-curation
+    title: Data Curation
+  - id: analysis
+    title: Analysis
+  - id: modelling
+    title: Modelling
   - id: post-processing
-    title: AI/ML Post Processing
-    wgBadge:
-      label: WG1
-      id: wg-1
-  - id: obs-operators
-    title: AI Obs Operators
-  - id: ecmwf
-    title: ECMWF Pilot Project
-    subtitle: Modeling Analyses Ensembles
-  - id: foundation-model
-    title: Weather Foundation Model
-    wgBadge:
-      label: WG5
-      id: wg-5
-  - id: ai-warn
-    title: AI Warn
-  - id: climate-chat
-    title: Weather and Climate Chat
-  - id: toolbox
-    title: High Impact Weather Toolbox
-    subtitle: Identify Characterize Visualize
-  - id: workflows
-    title: Workflows
-    pillar: cross-cutting
-  - id: communication
-    title: Communication & Training
-    pillar: cross-cutting
+    title: Post Processing
+  - id: products-services
+    title: Products and Services

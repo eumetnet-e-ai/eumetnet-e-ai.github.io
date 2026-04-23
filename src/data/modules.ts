@@ -1,17 +1,9 @@
 import yaml from "js-yaml";
 import yamlSource from "./modules.yaml?raw";
 
-export interface WgBadge {
-  label: string;
-  id: string;
-}
-
 export interface ModuleItem {
   id: string;
   title: string;
-  subtitle?: string;
-  wgBadge?: WgBadge;
-  pillar?: string;
 }
 
 interface ModulesFile {
