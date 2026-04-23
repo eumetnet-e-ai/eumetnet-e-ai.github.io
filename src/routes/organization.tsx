@@ -108,9 +108,13 @@ function OrganizationPage() {
                 {workflowsNode?.title || "Workflows"}
               </div>
             )}
-            <div className="bg-white font-bold py-4 px-6 text-center rounded-md shadow-sm border border-slate-300 text-slate-800 text-lg transition-transform hover:scale-105 cursor-pointer">
+            <Link
+              to="/communication"
+              className="bg-white font-bold py-4 px-6 text-center rounded-md shadow-sm border border-slate-300 text-slate-800 text-lg transition-transform hover:scale-105 cursor-pointer"
+              title="View Communication Channels"
+            >
               {commsNode?.title || "Communication"}
-            </div>
+            </Link>
             <Link
               to="/training"
               className="bg-white font-bold py-4 px-6 text-center rounded-md shadow-sm border border-slate-300 text-slate-800 text-lg transition-transform hover:scale-105 cursor-pointer"
