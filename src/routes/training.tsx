@@ -1,7 +1,11 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { applications, getModuleLabel } from "@/data/applications";
+import { useState } from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import { trainingData } from "@/data/training";
 import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { Github, Presentation, Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/training")({
   head: () => ({
@@ -17,9 +21,17 @@ export const Route = createFileRoute("/training")({
 });
 
 function TrainingPage() {
-  const trainingApps = applications.filter((a) =>
-    a.domains.includes("training")
-  );
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredTrainingData = trainingData.filter((course) => {
+    const query = searchQuery.toLowerCase();
+    return (
+      course.title.toLowerCase().includes(query) ||
+      course.description.toLowerCase().includes(query) ||
+      course.tags?.some((tag) => tag.toLowerCase().includes(query)) ||
+      course.type.toLowerCase().includes(query)
+    );
+  });
 
   return (
     <div className="min-h-screen bg-background">
@@ -39,50 +51,73 @@ function TrainingPage() {
       </header>
 
       <main className="mx-auto max-w-6xl px-6 py-10">
-        {trainingApps.length === 0 ? (
+        <div className="mb-8 relative max-w-md">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            type="search"
+            placeholder="Search trainings, tags, or descriptions..."
+            className="pl-9 bg-card"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+
+        {filteredTrainingData.length === 0 ? (
           <div className="text-center text-muted-foreground py-12 border rounded-lg bg-card/50 border-dashed">
-            No training materials currently listed.
+            {searchQuery ? "No matching training materials found." : "No training materials currently listed."}
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {trainingApps.map((app) => (
-              <Link
-                key={app.id}
-                to="/apps/$appId"
-                params={{ appId: app.id }}
-                className="group focus:outline-none"
-              >
-                <Card className="overflow-hidden transition-shadow hover:shadow-lg group-focus-visible:ring-2 group-focus-visible:ring-ring h-full flex flex-col">
-                  <div className="relative aspect-[16/10] overflow-hidden bg-muted">
-                    <img
-                      src={app.image}
-                      alt={app.title}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <div className="absolute left-3 top-3 flex flex-col gap-1">
-                      {app.organization_modules?.map(modId => (
-                        <Badge key={modId} variant="secondary" className="backdrop-blur-sm bg-white/80">
-                          {getModuleLabel(modId)}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {filteredTrainingData.map((course) => (
+              <Card key={course.id} className="h-full flex flex-col overflow-hidden transition-shadow hover:shadow-md border-primary/20">
+                <CardHeader className="bg-muted/30 border-b pb-4">
+                  <div className="flex justify-between items-start gap-4">
+                    <div>
+                      <Badge variant="secondary" className="mb-2">
+                        {course.type}
+                      </Badge>
+                      <CardTitle className="text-xl leading-tight text-primary">
+                        {course.title}
+                      </CardTitle>
+                    </div>
+                  </div>
+                  <div className="text-sm font-medium text-muted-foreground mt-1">
+                    {course.date}
+                  </div>
+                </CardHeader>
+                <CardContent className="pt-5 flex-1 flex flex-col">
+                  <p className="text-sm text-foreground/80 leading-relaxed mb-6 flex-1">
+                    {course.description}
+                  </p>
+                  {course.tags && course.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {course.tags.map(tag => (
+                        <Badge key={tag} variant="outline" className="bg-background text-xs font-normal">
+                          {tag}
                         </Badge>
                       ))}
                     </div>
-                  </div>
-                  <div className="flex flex-1 flex-col p-5">
-                    <h2 className="text-lg font-semibold leading-tight text-foreground">
-                      {app.title}
-                    </h2>
-                    <p className="mt-2 flex-1 text-sm text-muted-foreground">{app.short}</p>
-                    <div className="mt-4 flex flex-wrap gap-1.5">
-                      {app.domains.slice(0, 3).map((d) => (
-                        <Badge key={d} variant="outline" className="text-xs">
-                          {d.replace(/_/g, " ")}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                </Card>
-              </Link>
+                  )}
+                </CardContent>
+                <CardFooter className="border-t bg-muted/10 p-4 flex flex-wrap gap-3">
+                  {course.githubLink && (
+                    <Button variant="outline" size="sm" asChild className="h-8">
+                      <a href={course.githubLink} target="_blank" rel="noopener noreferrer">
+                        <Github className="mr-2 h-4 w-4" />
+                        GitHub
+                      </a>
+                    </Button>
+                  )}
+                  {course.slidesLink && (
+                    <Button variant="outline" size="sm" asChild className="h-8">
+                      <a href={course.slidesLink} target="_blank" rel="noopener noreferrer">
+                        <Presentation className="mr-2 h-4 w-4" />
+                        Slides
+                      </a>
+                    </Button>
+                  )}
+                </CardFooter>
+              </Card>
             ))}
           </div>
         )}
@@ -90,7 +125,11 @@ function TrainingPage() {
 
       <footer className="mt-16 border-t bg-card">
         <div className="mx-auto max-w-6xl px-6 py-6 text-sm text-muted-foreground">
-          More updates and materials coming soon.
+          Add new entries by editing{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 text-xs">
+            src/data/training.yaml
+          </code>
+          .
         </div>
       </footer>
     </div>

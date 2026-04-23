@@ -1,0 +1,19 @@
+training:
+  - id: e-ai-ml2
+    title: "E-AI Intensive Course on AI/ML"
+    date: "January 2026"
+    description: >
+      A structured, hands-on introduction to modern AI/ML methods with a strong focus on weather and climate applications. Includes operational perspectives, reproducibility, and best practices for building reliable ML workflows. Covers Python, PyTorch, LLMs, Diffusion, Agents, MLOps, Anemoi, and AIFS/AICON.
+    githubLink: "https://github.com/eumetnet-e-ai/e-ai_ml2"
+    slidesLink: "https://raw.githubusercontent.com/eumetnet-e-ai/e-ai_ml2/main/course/e-ai_ml2.pdf"
+    type: "Course"
+    tags: ["ML", "Deep Learning", "LLMs", "MLOps", "Anemoi"]
+
+  - id: eai-zarr-workshop
+    title: "Introduction to Zarr Workshop"
+    date: "Spring 2026"
+    description: >
+      Materials for the E-AI Spring Workshop 2026 Zarr Hands-On Session. Includes practical Jupyter notebooks and environment setup guides for working efficiently with cloud-optimized Zarr data formats in Python.
+    githubLink: "https://github.com/annaerdmann/eai-zarr-workshop"
+    type: "Workshop"
+    tags: ["Zarr", "Data Formats", "Python", "Cloud"]

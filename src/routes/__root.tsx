@@ -90,6 +90,12 @@ function RootComponent() {
           >
             Organization
           </Link>
+          <Link
+            to="/training"
+            className="text-sm font-medium transition-colors hover:text-primary [&.active]:text-primary text-muted-foreground"
+          >
+            Training
+          </Link>
         </div>
       </nav>
       <Outlet />
