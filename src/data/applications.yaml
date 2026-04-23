@@ -1,0 +1,179 @@
+# EUMETNET ML Applications Database
+#
+# Each entry describes one machine-learning application in weather/climate.
+# To add a new example, append a new item with all required fields.
+#
+# Schema:
+#   id:           string, unique, url-safe (used as the route slug)
+#   title:        string, display name
+#   image:        string, URL to a representative image
+#   short:        string, one-line teaser shown on the gallery tile
+#   description:  string, long-form description (markdown-ish plain text)
+#   pipeline:     one of: observation_qa | observation_dataset_processing | forecasting | postprocessing
+#   domains:      list of tags, e.g. [downscaling, nowcasting, front_detection, bias_correction, emulation]
+#   organization: string, lead organization
+#   eumetnet_member: boolean, true if the lead organization is an EUMETNET member
+#   packages:     list of python packages it builds on
+#                   - name: string
+#                     url:  string (optional, link to project)
+#                     maintained_by_eumetnet: boolean (true highlights the package)
+#   links:        list (optional)
+#                   - label: string
+#                     url:   string
+
+applications:
+  - id: pangu-weather-emulator
+    title: Pangu-Weather Emulator
+    image: https://images.unsplash.com/photo-1561484930-998b6a7b22e8?w=1200&q=80
+    short: Global medium-range forecasting with a 3D Earth-specific transformer.
+    description: >
+      A deep-learning weather prediction model that emulates global numerical weather
+      prediction up to 7 days ahead at 0.25° resolution. Used as a reference baseline
+      for AI-NWP intercomparison within EUMETNET working groups.
+    pipeline: forecasting
+    domains: [emulation, medium_range]
+    organization: ECMWF (collaboration)
+    eumetnet_member: true
+    packages:
+      - name: torch
+        url: https://pytorch.org
+        maintained_by_eumetnet: false
+      - name: anemoi-models
+        url: https://github.com/ecmwf/anemoi-models
+        maintained_by_eumetnet: true
+      - name: earthkit
+        url: https://github.com/ecmwf/earthkit
+        maintained_by_eumetnet: true
+    links:
+      - label: Anemoi project
+        url: https://anemoi-docs.readthedocs.io
+
+  - id: radar-nowcasting-pysteps-ml
+    title: Radar Nowcasting (pysteps + ML)
+    image: https://images.unsplash.com/photo-1527482797697-8795b05a13fe?w=1200&q=80
+    short: Hybrid optical-flow + deep learning precipitation nowcasting up to 6h.
+    description: >
+      Combines the operational pysteps nowcasting library with a U-Net post-processor
+      to extend useful skill of radar precipitation forecasts. Deployed for short-range
+      warnings across several EUMETNET national services.
+    pipeline: forecasting
+    domains: [nowcasting, precipitation]
+    organization: FMI / MeteoSwiss
+    eumetnet_member: true
+    packages:
+      - name: pysteps
+        url: https://pysteps.github.io
+        maintained_by_eumetnet: true
+      - name: torch
+        url: https://pytorch.org
+        maintained_by_eumetnet: false
+      - name: xarray
+        url: https://xarray.dev
+        maintained_by_eumetnet: false
+
+  - id: cnn-front-detection
+    title: CNN Front Detection
+    image: https://images.unsplash.com/photo-1532178910-7815d6919875?w=1200&q=80
+    short: Automatic detection of cold/warm/occluded fronts from ERA5 fields.
+    description: >
+      A convolutional segmentation network trained on hand-labelled synoptic charts
+      to detect frontal systems in reanalysis and NWP output. Useful for climatologies
+      and downstream impact studies.
+    pipeline: postprocessing
+    domains: [front_detection, feature_detection]
+    organization: DWD
+    eumetnet_member: true
+    packages:
+      - name: tensorflow
+        url: https://tensorflow.org
+        maintained_by_eumetnet: false
+      - name: xarray
+        url: https://xarray.dev
+        maintained_by_eumetnet: false
+      - name: cfgrib
+        url: https://github.com/ecmwf/cfgrib
+        maintained_by_eumetnet: true
+
+  - id: statistical-downscaling-gan
+    title: Statistical Downscaling GAN
+    image: https://images.unsplash.com/photo-1419833173245-f59e1b93f9ee?w=1200&q=80
+    short: Generative downscaling of precipitation from 25 km to 1 km.
+    description: >
+      Conditional GAN producing physically plausible high-resolution precipitation
+      fields conditioned on coarse NWP output. Calibrated against radar-gauge analyses
+      over Central Europe.
+    pipeline: postprocessing
+    domains: [downscaling, precipitation, generative]
+    organization: MeteoSwiss
+    eumetnet_member: true
+    packages:
+      - name: torch
+        maintained_by_eumetnet: false
+      - name: climetlab
+        url: https://github.com/ecmwf/climetlab
+        maintained_by_eumetnet: true
+
+  - id: aws-qc-anomaly
+    title: Automatic Weather Station QC
+    image: https://images.unsplash.com/photo-1561553873-e8491a564fd0?w=1200&q=80
+    short: Anomaly detection on surface station observations.
+    description: >
+      Isolation-forest and autoencoder ensemble for real-time quality control of
+      temperature, humidity and pressure observations from AWS networks. Replaces
+      hand-tuned threshold checks.
+    pipeline: observation_qa
+    domains: [quality_control, anomaly_detection]
+    organization: KNMI
+    eumetnet_member: true
+    packages:
+      - name: scikit-learn
+        url: https://scikit-learn.org
+        maintained_by_eumetnet: false
+      - name: pandas
+        maintained_by_eumetnet: false
+      - name: titanlib
+        url: https://github.com/metno/titanlib
+        maintained_by_eumetnet: true
+
+  - id: satellite-cloud-classification
+    title: Satellite Cloud Classification
+    image: https://images.unsplash.com/photo-1505533321630-975218a5f66f?w=1200&q=80
+    short: Pixel-wise cloud type classification from MTG-I imagery.
+    description: >
+      Transformer-based segmentation of cloud regimes from Meteosat Third Generation
+      imagery, producing inputs for nowcasting and data assimilation. Trained on
+      collocated CloudSat/CALIPSO labels.
+    pipeline: observation_dataset_processing
+    domains: [satellite, classification]
+    organization: EUMETSAT (collaboration)
+    eumetnet_member: false
+    packages:
+      - name: torch
+        maintained_by_eumetnet: false
+      - name: satpy
+        url: https://satpy.readthedocs.io
+        maintained_by_eumetnet: false
+      - name: pyresample
+        url: https://pyresample.readthedocs.io
+        maintained_by_eumetnet: false
+
+  - id: ensemble-postprocessing-drn
+    title: Ensemble Post-processing (DRN)
+    image: https://images.unsplash.com/photo-1530908295418-a12e326966ba?w=1200&q=80
+    short: Distributional regression networks for calibrated 2 m temperature.
+    description: >
+      Neural network producing calibrated parametric forecast distributions from raw
+      ensemble output. Operational for 2 m temperature and 10 m wind speed at several
+      EUMETNET centres.
+    pipeline: postprocessing
+    domains: [calibration, ensemble, bias_correction]
+    organization: MET Norway
+    eumetnet_member: true
+    packages:
+      - name: torch
+        maintained_by_eumetnet: false
+      - name: properscoring
+        maintained_by_eumetnet: false
+      - name: anemoi-utils
+        url: https://github.com/ecmwf/anemoi-utils
+        maintained_by_eumetnet: true
