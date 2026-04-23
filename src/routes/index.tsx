@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { applications, pipelineLabels, type PipelineStage } from "@/data/applications";
+import { applications, getModuleLabel } from "@/data/applications";
+import { modulesData } from "@/data/modules";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -25,16 +26,13 @@ export const Route = createFileRoute("/")({
   component: GalleryPage,
 });
 
-const PIPELINE_FILTERS: Array<{ value: PipelineStage | "all"; label: string }> = [
-  { value: "all", label: "All stages" },
-  { value: "observation_qa", label: pipelineLabels.observation_qa },
-  { value: "observation_dataset_processing", label: pipelineLabels.observation_dataset_processing },
-  { value: "forecasting", label: pipelineLabels.forecasting },
-  { value: "postprocessing", label: pipelineLabels.postprocessing },
+const MODULE_FILTERS: Array<{ value: string | "all"; label: string }> = [
+  { value: "all", label: "All modules" },
+  ...modulesData.map(m => ({ value: m.id, label: m.title }))
 ];
 
 function GalleryPage() {
-  const [filter, setFilter] = useState<PipelineStage | "all">("all");
+  const [filter, setFilter] = useState<string | "all">("all");
   const [domain, setDomain] = useState<string | "all">("all");
 
   const allDomains = useMemo(() => {
@@ -45,7 +43,7 @@ function GalleryPage() {
 
   const filtered = applications.filter(
     (a) =>
-      (filter === "all" || a.pipeline === filter) &&
+      (filter === "all" || a.modules.includes(filter)) &&
       (domain === "all" || a.domains.includes(domain)),
   );
 
@@ -70,7 +68,7 @@ function GalleryPage() {
       <main className="mx-auto max-w-6xl px-6 py-10">
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap gap-2">
-            {PIPELINE_FILTERS.map((p) => (
+            {MODULE_FILTERS.map((p) => (
               <Button
                 key={p.value}
                 size="sm"
@@ -122,10 +120,12 @@ function GalleryPage() {
                       loading="lazy"
                       className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
-                    <div className="absolute left-3 top-3">
-                      <Badge variant="secondary" className="backdrop-blur-sm">
-                        {pipelineLabels[app.pipeline]}
-                      </Badge>
+                    <div className="absolute left-3 top-3 flex flex-col gap-1">
+                      {app.modules.map(modId => (
+                        <Badge key={modId} variant="secondary" className="backdrop-blur-sm bg-white/80">
+                          {getModuleLabel(modId)}
+                        </Badge>
+                      ))}
                     </div>
                   </div>
                   <div className="flex flex-1 flex-col p-5">

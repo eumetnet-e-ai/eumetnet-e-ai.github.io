@@ -11,7 +11,7 @@
 #   title:        string, display name
 #   short:        string, one-line teaser shown on the gallery tile
 #   description:  string, long-form description (markdown-ish plain text)
-#   pipeline:     one of: observation_qa | observation_dataset_processing | forecasting | postprocessing
+#   modules:      list of module IDs from the E-AI diagram
 #   domains:      list of tags, e.g. [downscaling, nowcasting, front_detection, bias_correction, emulation]
 #   organization: string, lead organization
 #   eumetnet_member: boolean, true if the lead organization is an EUMETNET member
@@ -31,7 +31,7 @@ applications:
       A deep-learning weather prediction model that emulates global numerical weather
       prediction up to 7 days ahead at 0.25° resolution. Used as a reference baseline
       for AI-NWP intercomparison within EUMETNET working groups.
-    pipeline: forecasting
+    modules: [foundation-model]
     domains: [emulation, medium_range]
     organization: ECMWF (collaboration)
     eumetnet_member: true
@@ -56,7 +56,7 @@ applications:
       Combines the operational pysteps nowcasting library with a U-Net post-processor
       to extend useful skill of radar precipitation forecasts. Deployed for short-range
       warnings across several EUMETNET national services.
-    pipeline: forecasting
+    modules: [foundation-model]
     domains: [nowcasting, precipitation]
     organization: FMI / MeteoSwiss
     eumetnet_member: true
@@ -78,7 +78,7 @@ applications:
       A convolutional segmentation network trained on hand-labelled synoptic charts
       to detect frontal systems in reanalysis and NWP output. Useful for climatologies
       and downstream impact studies.
-    pipeline: postprocessing
+    modules: [post-processing]
     domains: [front_detection, feature_detection]
     organization: DWD
     eumetnet_member: true
@@ -100,7 +100,7 @@ applications:
       Conditional GAN producing physically plausible high-resolution precipitation
       fields conditioned on coarse NWP output. Calibrated against radar-gauge analyses
       over Central Europe.
-    pipeline: postprocessing
+    modules: [post-processing]
     domains: [downscaling, precipitation, generative]
     organization: MeteoSwiss
     eumetnet_member: true
@@ -118,7 +118,7 @@ applications:
       Isolation-forest and autoencoder ensemble for real-time quality control of
       temperature, humidity and pressure observations from AWS networks. Replaces
       hand-tuned threshold checks.
-    pipeline: observation_qa
+    modules: [obs-operators]
     domains: [quality_control, anomaly_detection]
     organization: KNMI
     eumetnet_member: true
@@ -139,7 +139,7 @@ applications:
       Transformer-based segmentation of cloud regimes from Meteosat Third Generation
       imagery, producing inputs for nowcasting and data assimilation. Trained on
       collocated CloudSat/CALIPSO labels.
-    pipeline: observation_dataset_processing
+    modules: [data-curation]
     domains: [satellite, classification]
     organization: EUMETSAT (collaboration)
     eumetnet_member: false
@@ -160,7 +160,7 @@ applications:
       Neural network producing calibrated parametric forecast distributions from raw
       ensemble output. Operational for 2 m temperature and 10 m wind speed at several
       EUMETNET centres.
-    pipeline: postprocessing
+    modules: [post-processing]
     domains: [calibration, ensemble, bias_correction]
     organization: MET Norway
     eumetnet_member: true
@@ -178,7 +178,7 @@ applications:
     description: >
       A comprehensive framework to support data-driven forecasting operations, 
       developed as part of the EUMETNET E-AI activities to bridge research and operations.
-    pipeline: forecasting
+    modules: [foundation-model]
     domains: [emulation]
     organization: ECMWF
     eumetnet_member: true
@@ -193,7 +193,7 @@ applications:
     description: >
       AIFS by ECMWF implementing Global Deterministic and Ensemble (DET + ENS) 
       forecasting capabilities by leveraging the Anemoi framework.
-    pipeline: forecasting
+    modules: [foundation-model]
     domains: [medium_range, ensemble]
     organization: ECMWF
     eumetnet_member: true
@@ -205,7 +205,7 @@ applications:
     description: >
       A stretched-grid limited area model developed by MET Norway and partners, 
       built upon the Anemoi framework for high-resolution regional forecasting.
-    pipeline: forecasting
+    modules: [foundation-model]
     domains: [regional, emulation]
     organization: MET Norway
     eumetnet_member: true
@@ -217,7 +217,7 @@ applications:
     description: >
       AICON model by DWD, based on the ICON-DREAM architecture and utilizing 
       the Anemoi framework for AI-enhanced weather prediction.
-    pipeline: forecasting
+    modules: [foundation-model]
     domains: [regional]
     organization: DWD
     eumetnet_member: true
@@ -229,7 +229,7 @@ applications:
     description: >
       Application of the Anemoi framework for Limited Area Modeling (LAM) 
       in operational weather prediction contexts.
-    pipeline: forecasting
+    modules: [foundation-model]
     domains: [regional, high_resolution]
     organization: EUMETNET
     eumetnet_member: true
@@ -241,7 +241,7 @@ applications:
     description: >
       Natural language processing services and models tailored for meteorological 
       applications and automated forecast generation.
-    pipeline: postprocessing
+    modules: [post-processing]
     domains: [nlp]
     organization: EUMETNET
     eumetnet_member: true
@@ -253,7 +253,7 @@ applications:
     description: >
       Curating and preparing an AI-ready OPERA-SEVIRI dataset to facilitate 
       machine learning training and research across European weather services.
-    pipeline: observation_dataset_processing
+    modules: [data-curation]
     domains: [satellite, data_curation]
     organization: EUMETNET & EUMETSAT
     eumetnet_member: true
@@ -265,7 +265,7 @@ applications:
     description: >
       Training and educational resources focusing on Machine Learning and AI 
       applications specifically designed for National Meteorological Services.
-    pipeline: postprocessing
+    modules: [post-processing]
     domains: [training]
     organization: EUMETNET
     eumetnet_member: true
@@ -277,7 +277,7 @@ applications:
     description: >
       AI-based nowcasting system dedicated to predicting precipitation and 
       solar radiation for short-term forecasting.
-    pipeline: forecasting
+    modules: [foundation-model]
     domains: [nowcasting, precipitation, solar]
     organization: EUMETNET
     eumetnet_member: true
@@ -289,7 +289,7 @@ applications:
     description: >
       Collaborative in-person workshops to advance AI and machine learning 
       integration in weather and climate among EUMETNET members.
-    pipeline: postprocessing
+    modules: [post-processing]
     domains: [training]
     organization: EUMETNET
     eumetnet_member: true
@@ -301,7 +301,7 @@ applications:
     description: >
       Frameworks, strategies, and infrastructure implementations for bridging 
       the gap between ML research models and robust operational deployments.
-    pipeline: postprocessing
+    modules: [post-processing]
     domains: [mlops]
     organization: EUMETNET
     eumetnet_member: true
@@ -313,7 +313,7 @@ applications:
     description: >
       Machine learning support project aimed at improving cross-border 
       convection forecasts (ASP-CBCF) across national boundaries.
-    pipeline: forecasting
+    modules: [foundation-model]
     domains: [convection, nowcasting]
     organization: EUMETNET
     eumetnet_member: true
@@ -325,7 +325,7 @@ applications:
     description: >
       Application of machine learning algorithms to automatically detect 
       and trace meteorological fronts in gridded datasets.
-    pipeline: postprocessing
+    modules: [post-processing]
     domains: [front_detection]
     organization: EUMETNET
     eumetnet_member: true

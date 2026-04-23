@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ExternalLink, Star } from "lucide-react";
-import { getApplication, pipelineLabels, type Application } from "@/data/applications";
+import { getApplication, getModuleLabel, type Application } from "@/data/applications";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -63,7 +63,9 @@ function AppDetailPage() {
       <main className="mx-auto -mt-20 max-w-4xl px-6 pb-16">
         <div className="rounded-xl border bg-card p-6 shadow-lg sm:p-8">
           <div className="flex flex-wrap items-center gap-2">
-            <Badge>{pipelineLabels[app.pipeline]}</Badge>
+            {app.modules.map(modId => (
+              <Badge key={modId}>{getModuleLabel(modId)}</Badge>
+            ))}
             {app.eumetnet_member && (
               <Badge variant="secondary" className="gap-1">
                 <Star className="h-3 w-3" />

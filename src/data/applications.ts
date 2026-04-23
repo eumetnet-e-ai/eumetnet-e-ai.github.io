@@ -1,5 +1,6 @@
 import yaml from "js-yaml";
 import yamlSource from "./applications.yaml?raw";
+import { getModule } from "./modules";
 
 // Eagerly import all cover images from src/assets/applications.
 // File name (without extension) must match the application `id`.
@@ -15,12 +16,6 @@ for (const [path, url] of Object.entries(imageModules)) {
   const id = file.replace(/\.(jpg|jpeg|png|webp)$/i, "");
   imagesById[id] = url;
 }
-
-export type PipelineStage =
-  | "observation_qa"
-  | "observation_dataset_processing"
-  | "forecasting"
-  | "postprocessing";
 
 export interface PythonPackage {
   name: string;
@@ -40,7 +35,7 @@ export interface Application {
   image: string;
   short: string;
   description: string;
-  pipeline: PipelineStage;
+  modules: string[];
   domains: string[];
   organization: string;
   eumetnet_member: boolean;
@@ -67,13 +62,10 @@ export const applications: Application[] = parsed.applications.map((a) => ({
   image: imagesById[a.id] ?? FALLBACK_IMAGE,
 }));
 
-export const pipelineLabels: Record<PipelineStage, string> = {
-  observation_qa: "Observation QA",
-  observation_dataset_processing: "Obs. Dataset Processing",
-  forecasting: "Forecasting",
-  postprocessing: "Post-processing",
-};
-
 export function getApplication(id: string): Application | undefined {
   return applications.find((a) => a.id === id);
+}
+
+export function getModuleLabel(id: string): string {
+  return getModule(id)?.title || id;
 }
