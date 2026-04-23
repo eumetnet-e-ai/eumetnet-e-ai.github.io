@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MessageSquare, Mail, Github, Globe, Hash } from "lucide-react";
@@ -84,14 +84,22 @@ function CommunicationPage() {
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {wgsWithComms.map((wg) => (
                 <Card key={wg.id} className="flex flex-col shadow-sm border-muted">
-                  <CardHeader className="bg-muted/30 border-b pb-4">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-2xl">{wg.emoji}</span>
-                      <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                        {wg.id.replace("-", " ")}
-                      </span>
-                    </div>
-                    <CardTitle className="text-lg leading-tight">{wg.name}</CardTitle>
+                  <CardHeader className="bg-muted/30 border-b p-0">
+                    <Link
+                      to="/working-groups"
+                      hash={wg.id}
+                      className="block p-6 pb-4 hover:bg-muted/50 transition-colors group"
+                    >
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-2xl">{wg.emoji}</span>
+                        <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground group-hover:text-primary/80 transition-colors">
+                          {wg.id.replace("-", " ")}
+                        </span>
+                      </div>
+                      <CardTitle className="text-lg leading-tight group-hover:text-primary transition-colors">
+                        {wg.name}
+                      </CardTitle>
+                    </Link>
                   </CardHeader>
                   <CardContent className="pt-4 flex-1">
                     <ul className="space-y-4">
