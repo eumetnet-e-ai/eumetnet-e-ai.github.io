@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ExternalLink, Star } from "lucide-react";
 import { getApplication, getModuleLabel, type Application } from "@/data/applications";
+import { workingGroups } from "@/data/working-groups";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -77,7 +78,38 @@ function AppDetailPage() {
             {app.title}
           </h1>
           <p className="mt-2 text-sm text-muted-foreground">{app.organization}</p>
-          <p className="mt-6 text-base leading-relaxed text-foreground">{app.description}</p>
+          <p className="mt-6 text-base leading-relaxed text-foreground whitespace-pre-wrap">{app.description}</p>
+
+          {app.working_groups && app.working_groups.length > 0 && (
+            <section className="mt-8 bg-muted/40 p-4 rounded-lg border border-border">
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                E-AI Working Groups
+              </h2>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {app.working_groups.map(wgId => {
+                  const wg = workingGroups.find(w => w.id === wgId);
+                  if (!wg) return null;
+                  return (
+                    <Link
+                      key={wgId}
+                      to="/working-groups"
+                      hash={wgId}
+                      className="group"
+                    >
+                      <Badge 
+                        variant="secondary" 
+                        className="bg-slate-800 text-white hover:bg-slate-700 transition-colors py-1 px-2.5 text-sm shadow-sm cursor-pointer border-transparent"
+                      >
+                        {wg.emoji && <span className="mr-1.5">{wg.emoji}</span>}
+                        <span className="font-bold mr-1">{wgId.toUpperCase().replace('-', '')}</span>
+                        <span className="font-normal opacity-90">{wg.name.replace(/^WG \d+ |^ATS /, '')}</span>
+                      </Badge>
+                    </Link>
+                  );
+                })}
+              </div>
+            </section>
+          )}
 
           <section className="mt-8">
             <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">

@@ -37,6 +37,7 @@ export interface Application {
   description: string;
   organization_modules: string[];
   domains: string[];
+  working_groups?: string[];
   organization: string;
   eumetnet_member: boolean;
   packages: PythonPackage[];

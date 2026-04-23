@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { applications, getModuleLabel } from "@/data/applications";
 import { categoriesData } from "@/data/organization";
+import { workingGroups } from "@/data/working-groups";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -128,11 +129,39 @@ function GalleryPage() {
                       ))}
                     </div>
                   </div>
-                  <div className="flex flex-1 flex-col p-5">
-                    <h2 className="text-lg font-semibold leading-tight text-foreground">
-                      {app.title}
-                    </h2>
-                    <p className="mt-2 flex-1 text-sm text-muted-foreground">{app.short}</p>
+                  <div className="flex flex-1 flex-col p-5 relative">
+                    <div className="flex justify-between items-start gap-2 mb-2">
+                      <h2 className="text-lg font-semibold leading-tight text-foreground">
+                        {app.title}
+                      </h2>
+                      {app.working_groups && app.working_groups.length > 0 && (
+                        <div className="flex gap-1 flex-wrap justify-end shrink-0">
+                          {app.working_groups.map(wgId => {
+                            const wg = workingGroups.find(w => w.id === wgId);
+                            if (!wg) return null;
+                            return (
+                              <Link
+                                key={wgId}
+                                to="/working-groups"
+                                hash={wgId}
+                                className="z-10"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <Badge 
+                                  variant="outline" 
+                                  className="text-[10px] bg-slate-800 text-white hover:bg-slate-700 transition-colors cursor-pointer border-transparent shadow-sm px-1.5 py-0"
+                                  title={wg.name}
+                                >
+                                  {wg.emoji && <span className="mr-1">{wg.emoji}</span>}
+                                  {wgId.toUpperCase().replace('-', '')}
+                                </Badge>
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                    <p className="flex-1 text-sm text-muted-foreground">{app.short}</p>
                     <div className="mt-4 flex flex-wrap gap-1.5">
                       {app.domains.slice(0, 3).map((d) => (
                         <Badge key={d} variant="outline" className="text-xs">
