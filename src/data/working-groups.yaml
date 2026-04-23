@@ -12,13 +12,6 @@ working_groups:
         email: Arianna.Valmassoi@dwd.de
       - name: Stephan Siemen
         email: stephan.siemen@ecmwf.int
-    communication:
-      github: https://github.com/eumetnet-e-ai/wg1
-      messaging:
-        name: Rocket Chat (#wg-1-data)
-        url: https://chat.eumetnet.eu/channel/wg-1-data
-      mailingList: wg1-data@lists.eumetnet.eu
-      website: https://example.com/wg1
   - id: wg-2
     name: WG 2 Large Language Model (LLM) Implementation and Services with AI-based Information Condensation and Communication, AI-based High Impact Weather (HIW) Warnings, Personalisation (formerly WG 5)
     emoji: 💬
@@ -29,11 +22,6 @@ working_groups:
         email: Johannes.Schenk@dwd.de
       - name: Frank Guibert
         email: frank.guibert@meteo.fr
-    communication:
-      github: https://github.com/eumetnet-e-ai/wg2-llm
-      messaging:
-        name: Slack (#wg2-llm)
-        url: https://slack.com/
   - id: wg-3
     name: WG 3 AI Operationalisation, Maintenance and QC, MLOps with AI Frameworks and Libraries (formerly WG 9)
     emoji: ⚙️
