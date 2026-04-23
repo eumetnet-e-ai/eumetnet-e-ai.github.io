@@ -39,38 +39,40 @@ function CommunicationPage() {
       <main className="mx-auto max-w-6xl px-6 py-10 space-y-12">
         <section>
           <h2 className="text-2xl font-bold tracking-tight mb-6">General E-AI Community</h2>
-          <div className="grid grid-cols-1 gap-8 max-w-2xl">
+          <div className="grid grid-cols-1 gap-8 max-w-3xl">
             {/* Email / Mailing List */}
-            <Card className="flex flex-col border-primary/20 shadow-sm hover:shadow-md transition-shadow">
-              <CardHeader className="bg-muted/30 border-b pb-4">
+            <Card className="border-primary/20 shadow-sm hover:shadow-md transition-shadow">
+              <CardHeader className="bg-muted/30 border-b py-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-primary/10 rounded-md text-primary">
-                    <Mail className="h-6 w-6" />
+                  <div className="p-1.5 bg-primary/10 rounded-md text-primary">
+                    <Mail className="h-5 w-5" />
                   </div>
-                  <CardTitle className="text-2xl text-primary">Programme Coordination</CardTitle>
+                  <CardTitle className="text-xl text-primary">Programme Coordination</CardTitle>
                 </div>
               </CardHeader>
-              <CardContent className="pt-6 flex-1 flex flex-col">
-                <p className="text-foreground/80 leading-relaxed mb-6 text-lg">
-                  To be informed about upcoming meetings, training courses, and general announcements, please contact the E-AI Programme Coordination.
+              <CardContent className="py-5">
+                <p className="text-sm text-foreground/80 mb-5">
+                  Contact the E-AI Programme Coordination to be informed about upcoming meetings, training courses, and general announcements.
                 </p>
                 
-                <div className="bg-muted p-4 rounded-md mb-8">
-                  <div className="font-medium text-foreground mb-1">Marek Jacob (DWD)</div>
-                  <div className="text-sm text-muted-foreground mb-2">E-AI Programme Coordination</div>
-                  <a 
-                    href="mailto:marek.jacob@eumetnet.eu" 
-                    className="text-primary hover:underline font-medium break-all"
-                  >
-                    marek.jacob[at]eumetnet.eu
-                  </a>
-                </div>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-muted/40 p-4 rounded-md gap-4 border border-muted">
+                  <div>
+                    <div className="font-semibold text-foreground">Marek Jacob (DWD)</div>
+                    <a 
+                      href="mailto:marek.jacob@eumetnet.eu" 
+                      className="text-sm text-primary hover:underline"
+                    >
+                      marek.jacob[at]eumetnet.eu
+                    </a>
+                  </div>
 
-                <Button variant="outline" size="lg" className="w-full sm:w-auto self-start" asChild>
-                  <a href="mailto:marek.jacob@eumetnet.eu?subject=E-AI%20Mailing%20List%20Subscription">
-                    Send Email
-                  </a>
-                </Button>
+                  <Button variant="outline" asChild>
+                    <a href="mailto:marek.jacob@eumetnet.eu?subject=E-AI%20Mailing%20List%20Subscription">
+                      <Mail className="mr-2 h-4 w-4" />
+                      Send Email
+                    </a>
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </div>

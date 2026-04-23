@@ -96,6 +96,12 @@ function RootComponent() {
           >
             Training
           </Link>
+          <Link
+            to="/communication"
+            className="text-sm font-medium transition-colors hover:text-primary [&.active]:text-primary text-muted-foreground"
+          >
+            Communication
+          </Link>
         </div>
       </nav>
       <Outlet />
