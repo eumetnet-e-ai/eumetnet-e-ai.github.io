@@ -82,6 +82,11 @@ function WorkingGroupsPage() {
                   <Badge variant="secondary">Jointly with {selectedWg.joint_programme}</Badge>
                 </div>
               )}
+              {selectedWg.description && (
+                <p className="text-foreground/80 leading-relaxed mt-4 text-sm sm:text-base">
+                  {selectedWg.description}
+                </p>
+              )}
             </CardHeader>
             <CardContent className="pt-6">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

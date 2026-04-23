@@ -17,6 +17,7 @@ export interface WorkingGroup {
   id: string;
   name: string;
   emoji?: string;
+  description?: string;
   joint_programme?: string;
   resources?: Record<string, string | null>;
   facilitators?: Contact[];

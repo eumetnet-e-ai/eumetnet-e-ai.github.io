@@ -51,6 +51,7 @@ working_groups:
     resources:
       Meeting Minutes: null
       MLCast Code: null
+      Notes: https://bit.ly/mlcast
     facilitators:
       - name: Irene Livia Kruse
         email: ikr@dmi.dk
@@ -64,6 +65,7 @@ working_groups:
         name: Slack (MLCast)
         url: https://join.slack.com/t/mlcast/shared_invite/zt-3jmt7o0ck-DRIhX3bqSWU4gsmD_Y0m5w
       mailingList: mlcastcommunity+subscribe@googlegroups.com
+    description: The aim of the MLCast community is to organize the joint-development of an open-source Python package that unifies machine-learning models for nowcasting. We envision a collaborative GitHub organization where all contributors have equal ownership. The package will provide a simple, clean API for calling pre-trained ML-based nowcasting algorithms, allow for the training of new models, and include functionality to benchmark models using shared testing datasets (e.g., on European Weather Cloud S3). It will be rigorously tested via CI/CD using GitHub Actions with GPU support. Furthermore, we aim to build a community that meets regularly to discuss scientific and technical advancements in ML for nowcasting. This collective effort ensures that institutes with GPU access can train models, while those with limited resources can actively help develop, test, and ultimately use these advanced techniques.
   - id: wg-7
     name: WG 7 AI in the EUMETNET Aviation Support Programme
     emoji: ✈️
