@@ -88,9 +88,17 @@ function OrganizationPage() {
             d) Cross-cutting
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
-            <div className="bg-white font-bold py-4 px-6 text-center rounded-md shadow-sm border border-slate-300 text-slate-800 text-lg transition-transform hover:scale-105 cursor-pointer">
+            <Link
+              to="/working-groups"
+              hash="wg-3"
+              className="bg-white font-bold py-4 px-6 text-center rounded-md shadow-sm border border-slate-300 text-slate-800 text-lg transition-transform hover:scale-105 cursor-pointer relative"
+              title="View WG 3 details"
+            >
+              <div className="absolute -top-2 -right-2 bg-slate-800 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm z-10">
+                WG3
+              </div>
               Workflows
-            </div>
+            </Link>
             <div className="bg-white font-bold py-4 px-6 text-center rounded-md shadow-sm border border-slate-300 text-slate-800 text-lg transition-transform hover:scale-105 cursor-pointer">
               Communication & Training
             </div>
