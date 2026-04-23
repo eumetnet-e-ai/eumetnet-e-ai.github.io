@@ -65,5 +65,28 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <>
+      <div className="fixed top-4 right-4 z-50 rounded bg-red-600 px-2 py-1 text-xs font-bold text-white shadow-lg pointer-events-none uppercase tracking-wider">
+        Demo Site
+      </div>
+      <nav className="border-b bg-background">
+        <div className="mx-auto max-w-6xl px-6 flex h-14 items-center gap-6">
+          <Link
+            to="/"
+            className="text-sm font-medium transition-colors hover:text-primary [&.active]:text-primary text-muted-foreground"
+          >
+            Showcase
+          </Link>
+          <Link
+            to="/working-groups"
+            className="text-sm font-medium transition-colors hover:text-primary [&.active]:text-primary text-muted-foreground"
+          >
+            Working Groups
+          </Link>
+        </div>
+      </nav>
+      <Outlet />
+    </>
+  );
 }

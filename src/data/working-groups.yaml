@@ -1,0 +1,110 @@
+working_groups:
+  - id: "wg-1"
+    name: "WG 1 AI Data Readiness and Curation"
+    emoji: "🗄️"
+    resources:
+      "Meeting Minutes": null
+      "Material": null
+    facilitators:
+      - name: "Roope Tervo"
+        email: "roope.tervo@eumetsat.int"
+      - name: "Arianna Valmossoi"
+        email: "Arianna.Valmassoi@dwd.de"
+      - name: "Stephan Siemen"
+        email: "stephan.siemen@ecmwf.int"
+
+  - id: "wg-2"
+    name: "WG 2 Large Language Model (LLM) Implementation and Services with AI-based Information Condensation and Communication, AI-based High Impact Weather (HIW) Warnings, Personalisation (formerly WG 5)"
+    emoji: "💬"
+    resources:
+      "Meeting Minutes and Material": null
+    facilitators:
+      - name: "Johannes Schenk"
+        email: "Johannes.Schenk@dwd.de"
+      - name: "Frank Guibert"
+        email: "frank.guibert@meteo.fr"
+
+  - id: "wg-3"
+    name: "WG 3 AI Operationalisation, Maintenance and QC, MLOps with AI Frameworks and Libraries (formerly WG 9)"
+    emoji: "⚙️"
+    resources:
+      "Meeting Minutes and Material": null
+    facilitators:
+      - name: "Gabriela Aznar Siguan"
+        email: "gabriela.aznar@meteoswiss.ch"
+      - name: "Frank Guibert"
+        email: "frank.guibert@meteo.fr"
+
+  - id: "wg-6"
+    name: "WG 6 MLCast Nowcasting"
+    emoji: "⚡"
+    joint_programme: "EUMETNET NWC Programme"
+    resources:
+      "Meeting Minutes": null
+      "MLCast Code": null
+    facilitators:
+      - name: "Irene Livia Kruse"
+        email: "ikr@dmi.dk"
+      - name: "Leif Denby"
+        email: "lcd@dmi.dk"
+      - name: "Irene Schicker"
+        email: "irene.schicker@geosphere.at"
+
+  - id: "wg-7"
+    name: "WG 7 AI in the EUMETNET Aviation Support Programme"
+    emoji: "✈️"
+    resources:
+      "Meeting Minutes and Material": null
+    contacts:
+      - name: "Mihaly Szucs"
+        email: "mihaly.szucs@eumetnet.eu"
+
+  - id: "wg-8"
+    name: "WG 8 Ethics Questions"
+    emoji: "⚖️"
+
+  - id: "wg-10"
+    name: "WG 10 Data Rescue"
+    emoji: "🛟"
+    joint_programme: "EUMETNET Climate Programme"
+    resources:
+      "Meeting Minutes and Material": null
+    facilitators:
+      - name: "Marlies van der Schee"
+        email: "marlies.van.der.schee@knmi.nl"
+      - name: "Barbara Chimani"
+        email: "barbara.chimani@geosphere.at"
+
+  - id: "wg-11"
+    name: "WG 11 Regional Downscaling for Climate Impact Analysis"
+    emoji: "🔍"
+    joint_programme: "EUMETNET Climate Programme"
+    resources:
+      "Meeting Minutes and Material": null
+    facilitators:
+      - name: "Barbara Chimani"
+        email: "barbara.chimani@geosphere.at"
+
+  - id: "wg-12"
+    name: "WG 12 Quality Control"
+    emoji: "✅"
+    joint_programme: "EUMETNET Climate Programme"
+    resources:
+      "Meeting Minutes and Material": null
+    facilitators:
+      - name: "Barbara Chimani"
+        email: "barbara.chimani@geosphere.at"
+
+  - id: "wg-13"
+    name: "WG 13 Data Fusion and PostProcessing (PP)"
+    emoji: "🧩"
+
+  - id: "ats"
+    name: "ATS Anemoi Technical Subgroup (formerly ATG)"
+    emoji: "🌬️"
+    resources:
+      "Meeting Minutes (access via ECMWF MLPP)": null
+      "Anemoi Code Docmentation": null
+    contacts:
+      - name: "Matthew Chantry"
+        email: "Matthew.Chantry@ecmwf.int"
