@@ -1,85 +1,14 @@
-# EUMETNET ML Applications Database
-#
-# Each entry describes one machine-learning application in weather/climate.
-# To add a new example:
-#   1. Append a new item below with all required fields.
-#   2. Place a cover image at: src/assets/applications/<id>.jpg
-#      (or .png / .webp). The file name MUST match the `id` field.
-#
-# Schema:
-#   id:           string, unique, url-safe (used as the route slug AND image filename)
-#   title:        string, display name
-#   short:        string, one-line teaser shown on the gallery tile
-#   description:  string, long-form description (markdown-ish plain text)
-#   organization_modules:      list of module IDs from the E-AI diagram
-#   domains:      list of tags, e.g. [downscaling, nowcasting, front_detection, bias_correction, emulation]
-#   organization: string, lead organization
-#   eumetnet_member: boolean, true if the lead organization is an EUMETNET member
-#   packages:     list of python packages it builds on
-#                   - name: string
-#                     url:  string (optional, link to project)
-#                     maintained_by_eumetnet: boolean (true highlights the package)
-#   links:        list (optional)
-#                   - label: string
-#                     url:   string
-
 applications:
-  - id: pangu-weather-emulator
-    title: Pangu-Weather Emulator
-    short: Global medium-range forecasting with a 3D Earth-specific transformer.
-    description: >
-      A deep-learning weather prediction model that emulates global numerical weather
-      prediction up to 7 days ahead at 0.25° resolution. Used as a reference baseline
-      for AI-NWP intercomparison within EUMETNET working groups.
-    organization_modules: [modelling]
-    domains: [emulation, medium_range]
-    organization: ECMWF (collaboration)
-    eumetnet_member: true
-    packages:
-      - name: torch
-        url: https://pytorch.org
-        maintained_by_eumetnet: false
-      - name: anemoi-models
-        url: https://github.com/ecmwf/anemoi-models
-        maintained_by_eumetnet: true
-      - name: earthkit
-        url: https://github.com/ecmwf/earthkit
-        maintained_by_eumetnet: true
-    links:
-      - label: Anemoi project
-        url: https://anemoi-docs.readthedocs.io
-
-  - id: radar-nowcasting-pysteps-ml
-    title: Radar Nowcasting (pysteps + ML)
-    short: Hybrid optical-flow + deep learning precipitation nowcasting up to 6h.
-    description: >
-      Combines the operational pysteps nowcasting library with a U-Net post-processor
-      to extend useful skill of radar precipitation forecasts. Deployed for short-range
-      warnings across several EUMETNET national services.
-    organization_modules: [modelling]
-    domains: [nowcasting, precipitation]
-    organization: FMI / MeteoSwiss
-    eumetnet_member: true
-    packages:
-      - name: pysteps
-        url: https://pysteps.github.io
-        maintained_by_eumetnet: true
-      - name: torch
-        url: https://pytorch.org
-        maintained_by_eumetnet: false
-      - name: xarray
-        url: https://xarray.dev
-        maintained_by_eumetnet: false
-
   - id: cnn-front-detection
     title: CNN Front Detection
     short: Automatic detection of cold/warm/occluded fronts from ERA5 fields.
-    description: >
-      A convolutional segmentation network trained on hand-labelled synoptic charts
-      to detect frontal systems in reanalysis and NWP output. Useful for climatologies
-      and downstream impact studies.
-    organization_modules: [post-processing]
-    domains: [front_detection, feature_detection]
+    description: |
+      A convolutional segmentation network trained on hand-labelled synoptic charts to detect frontal systems in reanalysis and NWP output. Useful for climatologies and downstream impact studies.
+    organization_modules:
+      - post-processing
+    domains:
+      - front_detection
+      - feature_detection
     organization: DWD
     eumetnet_member: true
     packages:
@@ -92,16 +21,17 @@ applications:
       - name: cfgrib
         url: https://github.com/ecmwf/cfgrib
         maintained_by_eumetnet: true
-
   - id: statistical-downscaling-gan
     title: Statistical Downscaling GAN
     short: Generative downscaling of precipitation from 25 km to 1 km.
-    description: >
-      Conditional GAN producing physically plausible high-resolution precipitation
-      fields conditioned on coarse NWP output. Calibrated against radar-gauge analyses
-      over Central Europe.
-    organization_modules: [post-processing]
-    domains: [downscaling, precipitation, generative]
+    description: |
+      Conditional GAN producing physically plausible high-resolution precipitation fields conditioned on coarse NWP output. Calibrated against radar-gauge analyses over Central Europe.
+    organization_modules:
+      - post-processing
+    domains:
+      - downscaling
+      - precipitation
+      - generative
     organization: MeteoSwiss
     eumetnet_member: true
     packages:
@@ -110,16 +40,16 @@ applications:
       - name: climetlab
         url: https://github.com/ecmwf/climetlab
         maintained_by_eumetnet: true
-
   - id: aws-qc-anomaly
     title: Automatic Weather Station QC
     short: Anomaly detection on surface station observations.
-    description: >
-      Isolation-forest and autoencoder ensemble for real-time quality control of
-      temperature, humidity and pressure observations from AWS networks. Replaces
-      hand-tuned threshold checks.
-    organization_modules: [analysis]
-    domains: [quality_control, anomaly_detection]
+    description: |
+      Isolation-forest and autoencoder ensemble for real-time quality control of temperature, humidity and pressure observations from AWS networks. Replaces hand-tuned threshold checks.
+    organization_modules:
+      - analysis
+    domains:
+      - quality_control
+      - anomaly_detection
     organization: KNMI
     eumetnet_member: true
     packages:
@@ -131,16 +61,16 @@ applications:
       - name: titanlib
         url: https://github.com/metno/titanlib
         maintained_by_eumetnet: true
-
   - id: satellite-cloud-classification
     title: Satellite Cloud Classification
     short: Pixel-wise cloud type classification from MTG-I imagery.
-    description: >
-      Transformer-based segmentation of cloud regimes from Meteosat Third Generation
-      imagery, producing inputs for nowcasting and data assimilation. Trained on
-      collocated CloudSat/CALIPSO labels.
-    organization_modules: [data-curation]
-    domains: [satellite, classification]
+    description: |
+      Transformer-based segmentation of cloud regimes from Meteosat Third Generation imagery, producing inputs for nowcasting and data assimilation. Trained on collocated CloudSat/CALIPSO labels.
+    organization_modules:
+      - data-curation
+    domains:
+      - satellite
+      - classification
     organization: EUMETSAT (collaboration)
     eumetnet_member: false
     packages:
@@ -152,16 +82,17 @@ applications:
       - name: pyresample
         url: https://pyresample.readthedocs.io
         maintained_by_eumetnet: false
-
   - id: ensemble-postprocessing-drn
     title: Ensemble Post-processing (DRN)
     short: Distributional regression networks for calibrated 2 m temperature.
-    description: >
-      Neural network producing calibrated parametric forecast distributions from raw
-      ensemble output. Operational for 2 m temperature and 10 m wind speed at several
-      EUMETNET centres.
-    organization_modules: [post-processing]
-    domains: [calibration, ensemble, bias_correction]
+    description: |
+      Neural network producing calibrated parametric forecast distributions from raw ensemble output. Operational for 2 m temperature and 10 m wind speed at several EUMETNET centres.
+    organization_modules:
+      - post-processing
+    domains:
+      - calibration
+      - ensemble
+      - bias_correction
     organization: MET Norway
     eumetnet_member: true
     packages:
@@ -175,158 +106,166 @@ applications:
   - id: anemoi-framework
     title: Anemoi
     short: Framework for data-driven forecasting
-    description: >
-      A comprehensive framework to support data-driven forecasting operations, 
-      developed as part of the EUMETNET E-AI activities to bridge research and operations.
-    organization_modules: [modelling]
-    domains: [emulation]
+    description: |
+      A comprehensive framework to support data-driven forecasting operations,  developed as part of the EUMETNET E-AI activities to bridge research and operations.
+    organization_modules:
+      - modelling
+    domains:
+      - emulation
     organization: ECMWF
     eumetnet_member: true
     packages:
       - name: anemoi-models
         url: https://github.com/ecmwf/anemoi-models
         maintained_by_eumetnet: true
-
   - id: aifs-ecmwf
     title: AIFS
     short: Global DET + ENS forecasting using Anemoi
-    description: >
-      AIFS by ECMWF implementing Global Deterministic and Ensemble (DET + ENS) 
-      forecasting capabilities by leveraging the Anemoi framework.
-    organization_modules: [modelling]
-    domains: [medium_range, ensemble]
+    description: |
+      AIFS by ECMWF implementing Global Deterministic and Ensemble (DET + ENS)  forecasting capabilities by leveraging the Anemoi framework.
+    organization_modules:
+      - modelling
+    domains:
+      - medium_range
+      - ensemble
     organization: ECMWF
     eumetnet_member: true
     packages: []
-
   - id: bris-met-norway
     title: BRIS
     short: Stretched-Grid limited area model by MET Norway et al.
-    description: >
-      A stretched-grid limited area model developed by MET Norway and partners, 
-      built upon the Anemoi framework for high-resolution regional forecasting.
-    organization_modules: [modelling]
-    domains: [regional, emulation]
+    description: |
+      A stretched-grid limited area model developed by MET Norway and partners,  built upon the Anemoi framework for high-resolution regional forecasting.
+    organization_modules:
+      - modelling
+    domains:
+      - regional
+      - emulation
     organization: MET Norway
     eumetnet_member: true
     packages: []
-
   - id: aicon-dwd
     title: AICON
     short: Based on ICON-DREAM (using Anemoi)
-    description: >
-      AICON model by DWD, based on the ICON-DREAM architecture and utilizing 
-      the Anemoi framework for AI-enhanced weather prediction.
-    organization_modules: [modelling]
-    domains: [regional]
+    description: |
+      AICON model by DWD, based on the ICON-DREAM architecture and utilizing  the Anemoi framework for AI-enhanced weather prediction.
+    organization_modules:
+      - modelling
+    domains:
+      - regional
     organization: DWD
     eumetnet_member: true
     packages: []
-
   - id: limited-area-modeling
     title: LAM with Anemoi
     short: Limited Area Modeling using the Anemoi framework
-    description: >
-      Application of the Anemoi framework for Limited Area Modeling (LAM) 
-      in operational weather prediction contexts.
-    organization_modules: [modelling]
-    domains: [regional, high_resolution]
+    description: |
+      Application of the Anemoi framework for Limited Area Modeling (LAM)  in operational weather prediction contexts.
+    organization_modules:
+      - modelling
+    domains:
+      - regional
+      - high_resolution
     organization: EUMETNET
     eumetnet_member: true
     packages: []
-
   - id: dawid-natural-language
-    title: "DAWID: Natural Language Services"
+    title: 'DAWID: Natural Language Services'
     short: Natural Language Services for meteorology
-    description: >
-      Natural language processing services and models tailored for meteorological 
-      applications and automated forecast generation.
-    organization_modules: [post-processing]
-    domains: [nlp]
+    description: |
+      Natural language processing services and models tailored for meteorological  applications and automated forecast generation.
+    organization_modules:
+      - post-processing
+    domains:
+      - nlp
     organization: EUMETNET
     eumetnet_member: true
     packages: []
-
   - id: data-curation-opera
-    title: "Data Curation: AI-ready OPERA-SEVIRI"
+    title: 'Data Curation: AI-ready OPERA-SEVIRI'
     short: AI-ready dataset collaboration between EUMETNET and EUMETSAT
-    description: >
-      Curating and preparing an AI-ready OPERA-SEVIRI dataset to facilitate 
-      machine learning training and research across European weather services.
-    organization_modules: [data-curation]
-    domains: [satellite, data_curation]
+    description: |
+      Curating and preparing an AI-ready OPERA-SEVIRI dataset to facilitate  machine learning training and research across European weather services.
+    organization_modules:
+      - data-curation
+    domains:
+      - satellite
+      - data_curation
     organization: EUMETNET & EUMETSAT
     eumetnet_member: true
     packages: []
-
   - id: eai-tutorials
     title: E-AI Tutorials
     short: ML/AI tutorials for Meteorological Services
-    description: >
-      Training and educational resources focusing on Machine Learning and AI 
-      applications specifically designed for National Meteorological Services.
-    organization_modules: [post-processing]
-    domains: [training]
+    description: |
+      Training and educational resources focusing on Machine Learning and AI  applications specifically designed for National Meteorological Services.
+    organization_modules:
+      - post-processing
+    domains:
+      - training
     organization: EUMETNET
     eumetnet_member: true
     packages: []
-
   - id: mlcast-nowcasting
     title: MLCast
     short: AI-based nowcasting of precipitation and solar radiation
-    description: >
-      AI-based nowcasting system dedicated to predicting precipitation and 
-      solar radiation for short-term forecasting.
-    organization_modules: [modelling]
-    domains: [nowcasting, precipitation, solar]
+    description: |
+      AI-based nowcasting system dedicated to predicting precipitation and  solar radiation for short-term forecasting.
+    organization_modules:
+      - modelling
+    domains:
+      - nowcasting
+      - precipitation
+      - solar
     organization: EUMETNET
     eumetnet_member: true
     packages: []
-
   - id: eai-in-person-workshops
     title: E-AI Workshops
     short: In-person workshops for EUMETNET E-AI
-    description: >
-      Collaborative in-person workshops to advance AI and machine learning 
-      integration in weather and climate among EUMETNET members.
-    organization_modules: [post-processing]
-    domains: [training]
+    description: |
+      Collaborative in-person workshops to advance AI and machine learning  integration in weather and climate among EUMETNET members.
+    organization_modules:
+      - post-processing
+    domains:
+      - training
     organization: EUMETNET
     eumetnet_member: true
     packages: []
-
   - id: ml-ops
     title: ML/Ops
     short: Bringing ML models from research to operations
-    description: >
-      Frameworks, strategies, and infrastructure implementations for bridging 
-      the gap between ML research models and robust operational deployments.
-    organization_modules: [post-processing]
-    domains: [mlops]
+    description: |
+      Frameworks, strategies, and infrastructure implementations for bridging  the gap between ML research models and robust operational deployments.
+    organization_modules:
+      - post-processing
+    domains:
+      - mlops
     organization: EUMETNET
     eumetnet_member: true
     packages: []
-
   - id: cross-border-convection
     title: ASP-CBCF
     short: Developing ML-support for cross-border convection forecasts
-    description: >
-      Machine learning support project aimed at improving cross-border 
-      convection forecasts (ASP-CBCF) across national boundaries.
-    organization_modules: [modelling]
-    domains: [convection, nowcasting]
+    description: |
+      Machine learning support project aimed at improving cross-border  convection forecasts (ASP-CBCF) across national boundaries.
+    organization_modules:
+      - modelling
+    domains:
+      - convection
+      - nowcasting
     organization: EUMETNET
     eumetnet_member: true
     packages: []
-
   - id: ml-front-detection
     title: ML Front Detection
     short: ML-based front detection for weather analysis
-    description: >
-      Application of machine learning algorithms to automatically detect 
-      and trace meteorological fronts in gridded datasets.
-    organization_modules: [post-processing]
-    domains: [front_detection]
+    description: |
+      Application of machine learning algorithms to automatically detect  and trace meteorological fronts in gridded datasets.
+    organization_modules:
+      - post-processing
+    domains:
+      - front_detection
     organization: EUMETNET
     eumetnet_member: true
     packages: []
