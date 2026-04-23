@@ -58,6 +58,12 @@ working_groups:
         email: lcd@dmi.dk
       - name: Irene Schicker
         email: irene.schicker@geosphere.at
+    communication:
+      github: https://github.com/mlcast-community
+      messaging:
+        name: Slack (MLCast)
+        url: https://join.slack.com/t/mlcast/shared_invite/zt-3jmt7o0ck-DRIhX3bqSWU4gsmD_Y0m5w
+      mailingList: mlcastcommunity+subscribe@googlegroups.com
   - id: wg-7
     name: WG 7 AI in the EUMETNET Aviation Support Programme
     emoji: ✈️
