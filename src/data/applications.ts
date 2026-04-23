@@ -1,6 +1,21 @@
 import yaml from "js-yaml";
 import yamlSource from "./applications.yaml?raw";
 
+// Eagerly import all cover images from src/assets/applications.
+// File name (without extension) must match the application `id`.
+const imageModules = import.meta.glob("../assets/applications/*.{jpg,jpeg,png,webp}", {
+  eager: true,
+  import: "default",
+  query: "?url",
+}) as Record<string, string>;
+
+const imagesById: Record<string, string> = {};
+for (const [path, url] of Object.entries(imageModules)) {
+  const file = path.split("/").pop() ?? "";
+  const id = file.replace(/\.(jpg|jpeg|png|webp)$/i, "");
+  imagesById[id] = url;
+}
+
 export type PipelineStage =
   | "observation_qa"
   | "observation_dataset_processing"
@@ -21,6 +36,7 @@ export interface ExternalLink {
 export interface Application {
   id: string;
   title: string;
+  /** Resolved at load time from src/assets/applications/<id>.<ext>. */
   image: string;
   short: string;
   description: string;
@@ -32,13 +48,24 @@ export interface Application {
   links?: ExternalLink[];
 }
 
+type RawApplication = Omit<Application, "image"> & { image?: string };
+
 interface ApplicationsFile {
-  applications: Application[];
+  applications: RawApplication[];
 }
 
 const parsed = yaml.load(yamlSource) as ApplicationsFile;
 
-export const applications: Application[] = parsed.applications;
+const FALLBACK_IMAGE =
+  "data:image/svg+xml;utf8," +
+  encodeURIComponent(
+    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 10'><rect width='16' height='10' fill='%23e5e7eb'/></svg>`,
+  );
+
+export const applications: Application[] = parsed.applications.map((a) => ({
+  ...a,
+  image: imagesById[a.id] ?? FALLBACK_IMAGE,
+}));
 
 export const pipelineLabels: Record<PipelineStage, string> = {
   observation_qa: "Observation QA",
