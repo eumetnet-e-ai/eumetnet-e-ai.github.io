@@ -3,6 +3,7 @@ import { workingGroups } from "@/data/working-groups";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { useState, useEffect } from "react";
+import { MessageSquare, Mail, Github, Globe } from "lucide-react";
 
 export const Route = createFileRoute("/working-groups")({
   head: () => ({
@@ -83,7 +84,7 @@ function WorkingGroupsPage() {
               )}
             </CardHeader>
             <CardContent className="pt-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {selectedWg.resources && Object.keys(selectedWg.resources).length > 0 && (
                   <div>
                     <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">
@@ -106,6 +107,102 @@ function WorkingGroupsPage() {
                           )}
                         </li>
                       ))}
+                    </ul>
+                  </div>
+                )}
+
+                {selectedWg.communication && Object.keys(selectedWg.communication).length > 0 && (
+                  <div>
+                    <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+                      Communication
+                    </h4>
+                    <ul className="space-y-4">
+                      {selectedWg.communication.messaging && (
+                        <li>
+                          <a 
+                            href={selectedWg.communication.messaging.url} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="group flex items-start gap-3"
+                          >
+                            <div className="p-1.5 bg-blue-100 dark:bg-blue-900/30 rounded-md text-blue-600 dark:text-blue-400 mt-0.5">
+                              <MessageSquare className="h-4 w-4" />
+                            </div>
+                            <div>
+                              <div className="text-sm font-medium group-hover:text-primary transition-colors">
+                                {selectedWg.communication.messaging.name}
+                              </div>
+                              <div className="text-xs text-muted-foreground line-clamp-1">
+                                Join the conversation
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                      )}
+                      {selectedWg.communication.github && (
+                        <li>
+                          <a 
+                            href={selectedWg.communication.github} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="group flex items-start gap-3"
+                          >
+                            <div className="p-1.5 bg-neutral-100 dark:bg-neutral-800 rounded-md text-neutral-700 dark:text-neutral-300 mt-0.5">
+                              <Github className="h-4 w-4" />
+                            </div>
+                            <div>
+                              <div className="text-sm font-medium group-hover:text-primary transition-colors">
+                                GitHub Repository
+                              </div>
+                              <div className="text-xs text-muted-foreground line-clamp-1">
+                                Source code & issues
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                      )}
+                      {selectedWg.communication.mailingList && (
+                        <li>
+                          <a 
+                            href={`mailto:${selectedWg.communication.mailingList}`}
+                            className="group flex items-start gap-3"
+                          >
+                            <div className="p-1.5 bg-orange-100 dark:bg-orange-900/30 rounded-md text-orange-600 dark:text-orange-400 mt-0.5">
+                              <Mail className="h-4 w-4" />
+                            </div>
+                            <div>
+                              <div className="text-sm font-medium group-hover:text-primary transition-colors">
+                                Mailing List
+                              </div>
+                              <div className="text-xs text-muted-foreground break-all">
+                                {selectedWg.communication.mailingList.replace("@", "[at]")}
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                      )}
+                      {selectedWg.communication.website && (
+                        <li>
+                          <a 
+                            href={selectedWg.communication.website} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="group flex items-start gap-3"
+                          >
+                            <div className="p-1.5 bg-green-100 dark:bg-green-900/30 rounded-md text-green-600 dark:text-green-400 mt-0.5">
+                              <Globe className="h-4 w-4" />
+                            </div>
+                            <div>
+                              <div className="text-sm font-medium group-hover:text-primary transition-colors">
+                                Website
+                              </div>
+                              <div className="text-xs text-muted-foreground line-clamp-1">
+                                External resources
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                      )}
                     </ul>
                   </div>
                 )}
