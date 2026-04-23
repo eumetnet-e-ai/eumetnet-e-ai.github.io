@@ -1,8 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useLocation } from "@tanstack/react-router";
 import { workingGroups } from "@/data/working-groups";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const Route = createFileRoute("/working-groups")({
   head: () => ({
@@ -19,6 +19,15 @@ export const Route = createFileRoute("/working-groups")({
 
 function WorkingGroupsPage() {
   const [selectedId, setSelectedId] = useState<string | null>(workingGroups[0]?.id || null);
+  const location = useLocation();
+
+  useEffect(() => {
+    const hash = location.hash ? location.hash.replace('#', '') : '';
+    if (hash && workingGroups.some((wg) => wg.id === hash)) {
+      setSelectedId(hash);
+    }
+  }, [location.hash]);
+
   const selectedWg = workingGroups.find((wg) => wg.id === selectedId);
 
   return (

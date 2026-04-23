@@ -84,6 +84,12 @@ function RootComponent() {
           >
             Working Groups
           </Link>
+          <Link
+            to="/organization"
+            className="text-sm font-medium transition-colors hover:text-primary [&.active]:text-primary text-muted-foreground"
+          >
+            Organization
+          </Link>
         </div>
       </nav>
       <Outlet />

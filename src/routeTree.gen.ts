@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkingGroupsRouteImport } from './routes/working-groups'
+import { Route as OrganizationRouteImport } from './routes/organization'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppsAppIdRouteImport } from './routes/apps.$appId'
 
 const WorkingGroupsRoute = WorkingGroupsRouteImport.update({
   id: '/working-groups',
   path: '/working-groups',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrganizationRoute = OrganizationRouteImport.update({
+  id: '/organization',
+  path: '/organization',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,30 +37,34 @@ const AppsAppIdRoute = AppsAppIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/organization': typeof OrganizationRoute
   '/working-groups': typeof WorkingGroupsRoute
   '/apps/$appId': typeof AppsAppIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/organization': typeof OrganizationRoute
   '/working-groups': typeof WorkingGroupsRoute
   '/apps/$appId': typeof AppsAppIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/organization': typeof OrganizationRoute
   '/working-groups': typeof WorkingGroupsRoute
   '/apps/$appId': typeof AppsAppIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/working-groups' | '/apps/$appId'
+  fullPaths: '/' | '/organization' | '/working-groups' | '/apps/$appId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/working-groups' | '/apps/$appId'
-  id: '__root__' | '/' | '/working-groups' | '/apps/$appId'
+  to: '/' | '/organization' | '/working-groups' | '/apps/$appId'
+  id: '__root__' | '/' | '/organization' | '/working-groups' | '/apps/$appId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  OrganizationRoute: typeof OrganizationRoute
   WorkingGroupsRoute: typeof WorkingGroupsRoute
   AppsAppIdRoute: typeof AppsAppIdRoute
 }
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/working-groups'
       fullPath: '/working-groups'
       preLoaderRoute: typeof WorkingGroupsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/organization': {
+      id: '/organization'
+      path: '/organization'
+      fullPath: '/organization'
+      preLoaderRoute: typeof OrganizationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  OrganizationRoute: OrganizationRoute,
   WorkingGroupsRoute: WorkingGroupsRoute,
   AppsAppIdRoute: AppsAppIdRoute,
 }
