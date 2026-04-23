@@ -43,7 +43,7 @@ export const Route = createFileRoute("/apps/$appId")({
 });
 
 function AppDetailPage() {
-  const { app } = Route.useLoaderData();
+  const { app } = Route.useLoaderData() as { app: Application };
 
   return (
     <div className="min-h-screen bg-background">
