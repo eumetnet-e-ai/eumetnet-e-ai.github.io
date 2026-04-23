@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -11,30 +11,30 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: oven-sh/setup-bun@v2
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install bun
+        uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
-
       - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Build
+        run: bun install
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Build with Vite
         env:
-          # When deploying to https://<user>.github.io/<repo>/ the site lives
-          # under a sub-path. Vite uses BASE_URL to prefix asset URLs.
-          # GitHub sets GITHUB_REPOSITORY to "owner/repo".
           BASE_URL: /${{ github.event.repository.name }}/
         run: bun run build
-
       - name: Locate build output
         id: out
         run: |
@@ -43,24 +43,24 @@ jobs:
           else
             echo "dir=dist" >> "$GITHUB_OUTPUT"
           fi
-
+      - name: Setup index.html for SPA
+        run: |
+          DIR="${{ steps.out.outputs.dir }}"
+          if [ -f "$DIR/_shell.html" ]; then
+            cp "$DIR/_shell.html" "$DIR/index.html"
+          fi
       - name: SPA fallback (copy index.html -> 404.html)
         run: |
-          cp "${{ steps.out.outputs.dir }}/index.html" "${{ steps.out.outputs.dir }}/404.html"
-
+          DIR="${{ steps.out.outputs.dir }}"
+          if [ -f "$DIR/index.html" ]; then
+            cp "$DIR/index.html" "$DIR/404.html"
+          fi
       - name: Disable Jekyll
         run: touch "${{ steps.out.outputs.dir }}/.nojekyll"
-
-      - uses: actions/upload-pages-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ steps.out.outputs.dir }}
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
