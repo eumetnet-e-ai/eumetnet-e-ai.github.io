@@ -85,7 +85,7 @@ function OrganizationPage() {
         {/* Workflows and Communication Section */}
         <div className="bg-slate-100 rounded-md border border-slate-300 p-4 shadow-sm flex flex-col mt-6">
           <h2 className="text-center font-bold text-gray-800 mb-4 bg-white/50 py-2 rounded">
-            d) cross-cutting
+            d) Cross-cutting
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
             <div className="bg-white font-bold py-4 px-6 text-center rounded-md shadow-sm border border-slate-300 text-slate-800 text-lg transition-transform hover:scale-105 cursor-pointer">
