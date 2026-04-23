@@ -2,9 +2,6 @@ working_groups:
   - id: wg-1
     name: WG 1 AI Data Readiness and Curation
     emoji: 🗄️
-    resources:
-      Meeting Minutes: null
-      Material: null
     facilitators:
       - name: Roope Tervo
         email: roope.tervo@eumetsat.int
@@ -15,8 +12,6 @@ working_groups:
   - id: wg-2
     name: WG 2 Large Language Model (LLM) Implementation and Services with AI-based Information Condensation and Communication, AI-based High Impact Weather (HIW) Warnings, Personalisation (formerly WG 5)
     emoji: 💬
-    resources:
-      Meeting Minutes and Material: null
     facilitators:
       - name: Johannes Schenk
         email: Johannes.Schenk@dwd.de
@@ -25,8 +20,6 @@ working_groups:
   - id: wg-3
     name: WG 3 AI Operationalisation, Maintenance and QC, MLOps with AI Frameworks and Libraries (formerly WG 9)
     emoji: ⚙️
-    resources:
-      Meeting Minutes and Material: null
     facilitators:
       - name: Gabriela Aznar Siguan
         email: gabriela.aznar@meteoswiss.ch
@@ -37,9 +30,10 @@ working_groups:
     emoji: ⚡
     joint_programme: EUMETNET NWC Programme
     resources:
-      Meeting Minutes: null
-      MLCast Code: null
       Notes: https://bit.ly/mlcast
+      GitHub Repository: https://github.com/mlcast-community
+      Mailing List: mailto:mlcastcommunity+subscribe@googlegroups.com
+      Slack (MLCast): https://join.slack.com/t/mlcast/shared_invite/zt-3jmt7o0ck-DRIhX3bqSWU4gsmD_Y0m5w
     facilitators:
       - name: Irene Livia Kruse
         email: ikr@dmi.dk
@@ -47,18 +41,10 @@ working_groups:
         email: lcd@dmi.dk
       - name: Irene Schicker
         email: irene.schicker@geosphere.at
-    communication:
-      github: https://github.com/mlcast-community
-      messaging:
-        name: Slack (MLCast)
-        url: https://join.slack.com/t/mlcast/shared_invite/zt-3jmt7o0ck-DRIhX3bqSWU4gsmD_Y0m5w
-      mailingList: mlcastcommunity+subscribe@googlegroups.com
     description: The aim of the MLCast community is to organize the joint-development of an open-source Python package that unifies machine-learning models for nowcasting. We envision a collaborative GitHub organization where all contributors have equal ownership. The package will provide a simple, clean API for calling pre-trained ML-based nowcasting algorithms, allow for the training of new models, and include functionality to benchmark models using shared testing datasets (e.g., on European Weather Cloud S3). It will be rigorously tested via CI/CD using GitHub Actions with GPU support. Furthermore, we aim to build a community that meets regularly to discuss scientific and technical advancements in ML for nowcasting. This collective effort ensures that institutes with GPU access can train models, while those with limited resources can actively help develop, test, and ultimately use these advanced techniques.
   - id: wg-7
     name: WG 7 AI in the EUMETNET Aviation Support Programme
     emoji: ✈️
-    resources:
-      Meeting Minutes and Material: null
     contacts:
       - name: Mihaly Szucs
         email: mihaly.szucs@eumetnet.eu
@@ -69,8 +55,6 @@ working_groups:
     name: WG 10 Data Rescue
     emoji: 🛟
     joint_programme: EUMETNET Climate Programme
-    resources:
-      Meeting Minutes and Material: null
     facilitators:
       - name: Marlies van der Schee
         email: marlies.van.der.schee@knmi.nl
@@ -80,8 +64,6 @@ working_groups:
     name: WG 11 Regional Downscaling for Climate Impact Analysis
     emoji: 🔍
     joint_programme: EUMETNET Climate Programme
-    resources:
-      Meeting Minutes and Material: null
     facilitators:
       - name: Barbara Chimani
         email: barbara.chimani@geosphere.at
@@ -89,8 +71,6 @@ working_groups:
     name: WG 12 Quality Control
     emoji: ✅
     joint_programme: EUMETNET Climate Programme
-    resources:
-      Meeting Minutes and Material: null
     facilitators:
       - name: Barbara Chimani
         email: barbara.chimani@geosphere.at
@@ -100,9 +80,6 @@ working_groups:
   - id: ats
     name: ATS Anemoi Technical Subgroup (formerly ATG)
     emoji: 🌬️
-    resources:
-      Meeting Minutes (access via ECMWF MLPP): null
-      Anemoi Code Docmentation: null
     contacts:
       - name: Matthew Chantry
         email: Matthew.Chantry@ecmwf.int

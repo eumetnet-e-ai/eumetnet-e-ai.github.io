@@ -6,13 +6,6 @@ export interface Contact {
   email: string;
 }
 
-export interface CommunicationChannels {
-  github?: string;
-  messaging?: { name: string; url: string };
-  mailingList?: string;
-  website?: string;
-}
-
 export interface WorkingGroup {
   id: string;
   name: string;
@@ -22,7 +15,6 @@ export interface WorkingGroup {
   resources?: Record<string, string | null>;
   facilitators?: Contact[];
   contacts?: Contact[];
-  communication?: CommunicationChannels;
 }
 
 interface WorkingGroupsFile {
