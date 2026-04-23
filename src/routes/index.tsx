@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { applications, getModuleLabel } from "@/data/applications";
-import { categoriesData } from "@/data/organization_modules";
+import { categoriesData } from "@/data/organization";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";

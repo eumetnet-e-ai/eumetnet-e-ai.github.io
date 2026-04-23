@@ -1,6 +1,6 @@
 import yaml from "js-yaml";
 import yamlSource from "./applications.yaml?raw";
-import { getCategory } from "./organization_modules";
+import { getCategory } from "./organization";
 
 // Eagerly import all cover images from src/assets/applications.
 // File name (without extension) must match the application `id`.
