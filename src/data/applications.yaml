@@ -20,30 +20,6 @@ applications:
         maintained_by_eumetnet: true
     working_groups:
       - wg-11
-  - id: aws-qc-anomaly
-    title: Automatic Weather Station QC
-    short: Anomaly detection on surface station observations.
-    description: |
-      Isolation-forest and autoencoder ensemble for real-time quality control of temperature, humidity and pressure observations from AWS networks. Replaces hand-tuned threshold checks.
-    organization_modules:
-      - analysis
-    domains:
-      - quality_control
-      - anomaly_detection
-    organization: KNMI
-    eumetnet_member: true
-    packages:
-      - name: scikit-learn
-        url: https://scikit-learn.org
-        maintained_by_eumetnet: false
-      - name: pandas
-        maintained_by_eumetnet: false
-      - name: titanlib
-        url: https://github.com/metno/titanlib
-        maintained_by_eumetnet: true
-    working_groups:
-      - wg-12
-      - wg-3
   - id: satellite-cloud-classification
     title: Satellite Cloud Classification
     short: Pixel-wise cloud type classification from MTG-I imagery.
