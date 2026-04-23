@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkingGroupsRouteImport } from './routes/working-groups'
+import { Route as TrainingRouteImport } from './routes/training'
 import { Route as OrganizationRouteImport } from './routes/organization'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppsAppIdRouteImport } from './routes/apps.$appId'
@@ -17,6 +18,11 @@ import { Route as AppsAppIdRouteImport } from './routes/apps.$appId'
 const WorkingGroupsRoute = WorkingGroupsRouteImport.update({
   id: '/working-groups',
   path: '/working-groups',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrainingRoute = TrainingRouteImport.update({
+  id: '/training',
+  path: '/training',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OrganizationRoute = OrganizationRouteImport.update({
@@ -38,12 +44,14 @@ const AppsAppIdRoute = AppsAppIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/organization': typeof OrganizationRoute
+  '/training': typeof TrainingRoute
   '/working-groups': typeof WorkingGroupsRoute
   '/apps/$appId': typeof AppsAppIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/organization': typeof OrganizationRoute
+  '/training': typeof TrainingRoute
   '/working-groups': typeof WorkingGroupsRoute
   '/apps/$appId': typeof AppsAppIdRoute
 }
@@ -51,20 +59,33 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/organization': typeof OrganizationRoute
+  '/training': typeof TrainingRoute
   '/working-groups': typeof WorkingGroupsRoute
   '/apps/$appId': typeof AppsAppIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/organization' | '/working-groups' | '/apps/$appId'
+  fullPaths:
+    | '/'
+    | '/organization'
+    | '/training'
+    | '/working-groups'
+    | '/apps/$appId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/organization' | '/working-groups' | '/apps/$appId'
-  id: '__root__' | '/' | '/organization' | '/working-groups' | '/apps/$appId'
+  to: '/' | '/organization' | '/training' | '/working-groups' | '/apps/$appId'
+  id:
+    | '__root__'
+    | '/'
+    | '/organization'
+    | '/training'
+    | '/working-groups'
+    | '/apps/$appId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   OrganizationRoute: typeof OrganizationRoute
+  TrainingRoute: typeof TrainingRoute
   WorkingGroupsRoute: typeof WorkingGroupsRoute
   AppsAppIdRoute: typeof AppsAppIdRoute
 }
@@ -76,6 +97,13 @@ declare module '@tanstack/react-router' {
       path: '/working-groups'
       fullPath: '/working-groups'
       preLoaderRoute: typeof WorkingGroupsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/training': {
+      id: '/training'
+      path: '/training'
+      fullPath: '/training'
+      preLoaderRoute: typeof TrainingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/organization': {
@@ -105,6 +133,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   OrganizationRoute: OrganizationRoute,
+  TrainingRoute: TrainingRoute,
   WorkingGroupsRoute: WorkingGroupsRoute,
   AppsAppIdRoute: AppsAppIdRoute,
 }

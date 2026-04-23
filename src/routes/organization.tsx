@@ -14,6 +14,7 @@ export const Route = createFileRoute("/organization")({
 function OrganizationPage() {
   const workflowsNode = getDiagramNode("workflows");
   const commsNode = getDiagramNode("communication");
+  const trainingNode = getDiagramNode("training");
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 font-sans">
       <div className="max-w-6xl mx-auto space-y-0">
@@ -89,7 +90,7 @@ function OrganizationPage() {
           <h2 className="text-center font-bold text-gray-800 mb-4 bg-white/50 py-2 rounded">
             d) Cross-cutting
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-grow">
             {workflowsNode?.wgBadge ? (
               <Link
                 to="/working-groups"
@@ -108,8 +109,15 @@ function OrganizationPage() {
               </div>
             )}
             <div className="bg-white font-bold py-4 px-6 text-center rounded-md shadow-sm border border-slate-300 text-slate-800 text-lg transition-transform hover:scale-105 cursor-pointer">
-              {commsNode?.title || "Communication & Training"}
+              {commsNode?.title || "Communication"}
             </div>
+            <Link
+              to="/training"
+              className="bg-white font-bold py-4 px-6 text-center rounded-md shadow-sm border border-slate-300 text-slate-800 text-lg transition-transform hover:scale-105 cursor-pointer"
+              title="View Training & Workshops"
+            >
+              {trainingNode?.title || "Training"}
+            </Link>
           </div>
         </div>
 

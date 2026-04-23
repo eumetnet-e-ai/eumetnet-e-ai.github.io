@@ -70,4 +70,6 @@ diagram_nodes:
       label: WG3
       id: wg-3
   - id: communication
-    title: Communication & Training
+    title: Communication
+  - id: training
+    title: Training
