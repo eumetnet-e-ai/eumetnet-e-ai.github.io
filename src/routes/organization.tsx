@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { organizationData } from "@/data/organization";
+import { getDiagramNode } from "@/data/modules";
 
 export const Route = createFileRoute("/organization")({
   head: () => ({
@@ -12,6 +13,8 @@ export const Route = createFileRoute("/organization")({
 });
 
 function OrganizationPage() {
+  const workflowsNode = getDiagramNode("workflows");
+  const commsNode = getDiagramNode("communication");
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 font-sans">
       <div className="max-w-6xl mx-auto space-y-0">
@@ -88,19 +91,25 @@ function OrganizationPage() {
             d) Cross-cutting
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
-            <Link
-              to="/working-groups"
-              hash="wg-3"
-              className="bg-white font-bold py-4 px-6 text-center rounded-md shadow-sm border border-slate-300 text-slate-800 text-lg transition-transform hover:scale-105 cursor-pointer relative"
-              title="View WG 3 details"
-            >
-              <div className="absolute -top-2 -right-2 bg-slate-800 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm z-10">
-                WG3
+            {workflowsNode?.wgBadge ? (
+              <Link
+                to="/working-groups"
+                hash={workflowsNode.wgBadge.id}
+                className="bg-white font-bold py-4 px-6 text-center rounded-md shadow-sm border border-slate-300 text-slate-800 text-lg transition-transform hover:scale-105 cursor-pointer relative"
+                title={`View ${workflowsNode.wgBadge.label} details`}
+              >
+                <div className="absolute -top-2 -right-2 bg-slate-800 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm z-10">
+                  {workflowsNode.wgBadge.label}
+                </div>
+                {workflowsNode.title}
+              </Link>
+            ) : (
+              <div className="bg-white font-bold py-4 px-6 text-center rounded-md shadow-sm border border-slate-300 text-slate-800 text-lg transition-transform hover:scale-105 cursor-pointer">
+                {workflowsNode?.title || "Workflows"}
               </div>
-              Workflows
-            </Link>
+            )}
             <div className="bg-white font-bold py-4 px-6 text-center rounded-md shadow-sm border border-slate-300 text-slate-800 text-lg transition-transform hover:scale-105 cursor-pointer">
-              Communication & Training
+              {commsNode?.title || "Communication & Training"}
             </div>
           </div>
         </div>

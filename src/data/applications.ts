@@ -1,6 +1,6 @@
 import yaml from "js-yaml";
 import yamlSource from "./applications.yaml?raw";
-import { getModule } from "./modules";
+import { getCategory } from "./modules";
 
 // Eagerly import all cover images from src/assets/applications.
 // File name (without extension) must match the application `id`.
@@ -67,5 +67,5 @@ export function getApplication(id: string): Application | undefined {
 }
 
 export function getModuleLabel(id: string): string {
-  return getModule(id)?.title || id;
+  return getCategory(id)?.title || id;
 }

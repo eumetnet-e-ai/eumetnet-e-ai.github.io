@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { applications, getModuleLabel } from "@/data/applications";
-import { modulesData } from "@/data/modules";
+import { categoriesData } from "@/data/modules";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -28,7 +28,7 @@ export const Route = createFileRoute("/")({
 
 const MODULE_FILTERS: Array<{ value: string | "all"; label: string }> = [
   { value: "all", label: "All modules" },
-  ...modulesData.map(m => ({ value: m.id, label: m.title }))
+  ...categoriesData.map(m => ({ value: m.id, label: m.title }))
 ];
 
 function GalleryPage() {
