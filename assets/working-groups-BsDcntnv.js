@@ -1,4 +1,4 @@
-import{d as n}from"./index-D26ra9pc.js";const e=`working_groups:
+import{d as n}from"./index-DeYrxFWz.js";const e=`working_groups:
   - id: wg-1
     name: WG 1 AI Data Readiness and Curation
     emoji: 🗄️
