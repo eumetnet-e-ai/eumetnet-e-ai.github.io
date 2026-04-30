@@ -15,8 +15,8 @@ You will need Node.js installed on your system. The project uses standard npm sc
 Clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/leifdenby/climate-ml-showcase.git
-cd climate-ml-showcase
+git clone https://github.com/eumetnet-e-ai/eumetnet-e-ai.github.io.git
+cd eumetnet-e-ai.github.io
 
 # Using npm
 npm install

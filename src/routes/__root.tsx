@@ -104,7 +104,7 @@ function RootComponent() {
           </div>
           <div className="flex items-center pl-2 sm:pl-4 border-l">
             <a
-              href="https://github.com/leifdenby/e-ai-website"
+              href="https://github.com/eumetnet-e-ai/eumetnet-e-ai.github.io"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2 text-sm font-medium whitespace-nowrap"
