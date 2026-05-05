@@ -6,6 +6,8 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/componen
 import { Github, Presentation, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export const Route = createFileRoute("/training")({
   head: () => ({
@@ -92,9 +94,31 @@ function TrainingPage() {
                   </div>
                 </CardHeader>
                 <CardContent className="pt-5 flex-1 flex flex-col">
-                  <p className="text-sm text-foreground/80 leading-relaxed mb-6 flex-1">
+                  {/* Render course.description as Markdown (supports bullet lists) */}
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      // map elements to styled components
+                      p: ({ node, ...props }) => (
+                        <p className="text-sm text-foreground/80 leading-relaxed mb-4 flex-1" {...props} />
+                      ),
+                      ul: ({ node, ...props }) => (
+                        <ul className="list-disc ml-6 mb-4 text-sm text-foreground/80" {...props} />
+                      ),
+                      ol: ({ node, ...props }) => (
+                        <ol className="list-decimal ml-6 mb-4 text-sm text-foreground/80" {...props} />
+                      ),
+                      li: ({ node, ...props }) => (
+                        <li className="mb-1" {...props} />
+                      ),
+                      a: ({ node, ...props }) => (
+                        <a className="text-primary underline" {...props} />
+                      ),
+                    }}
+                  >
                     {course.description}
-                  </p>
+                  </ReactMarkdown>
+
                   {course.tags && course.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2 mt-auto">
                       {course.tags.map((tag) => (
