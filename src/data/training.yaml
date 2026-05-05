@@ -18,6 +18,49 @@ training:
     type: "Workshop"
     tags: ["Zarr", "Data Formats", "Python", "Cloud"]
 
+
+  - id: earthkit
+    title: "Earthkit -- EUMETNET AI Workshop 2026"
+    date: "April 2026"
+    description: >
+      Notebooks for the EUMETNET AI Workshop 2026, showcasing earthkit as a unified Python pipeline from heterogeneous meteorological data sources to ML-ready Zarr stores.
+    githubLink: "https://github.com/ecmwf-training/2026-eumetnet-ai-workshop-earthkit"
+    type: "Tutorial"
+    tags: ["Earthkit", "Visualization", "Zarr", "regridding"]
+
+
+  - id: meteosaver
+    title: "From Paper to Proof"
+    date: "April 2026"
+    description: >
+      A tutorial to demonstrate the setup and use of MeteoSaver on sample data.
+      MeteoSaver is a machine-learning based software for the transcription of historical weather data.
+    githubLink: "https://github.com/VUB-HYDR/MeteoSaver/tree/version-1.1_including_precip_and_dry_and_wet_bulb_temp/manual_and_minimal_working_example"
+    slidesLink": "https://github.com/VUB-HYDR/MeteoSaver/blob/version-1.1_including_precip_and_dry_and_wet_bulb_temp/manual_and_minimal_working_example/Minimum_Working_Example%20_MeteoSaver_v1_0.ipynb"
+    type: "Tutorial"
+    tags: ["transcription", "digitalization", "scans", "paper archives"]
+
+  - id: data-fusion
+    title: "Low-cost sensors & data fusion for PM2.5 - a visual transformer approach"
+    date: "April 2026"
+    description: >
+      Learn how to use a visual transformer architecture to  methods to process raw
+      results of networks of low-cost sensors in such a way that the best estimates
+      of the concentrations can be obtained.
+    githubLink: "https://github.com/eumetnet-e-ai/2026-workshop-fusion-tutorial"
+    slidesLink": "https://raw.githubusercontent.com/eumetnet-e-ai/2026-workshop-fusion-tutorial/master/tutorial.pdf"
+    type: "Tutorial"
+    tags: ["data-fusion", "sensors", "MFAI", "PM 2.5"]
+
+  - id: e-ai-basics-7
+    title: "Tutorial E-AI 7: Getting started with virtual environments and Pytorch (recap)"
+    date: "April 2026"
+    description: >
+      A guide to set up and understand an isolated Python environment and install PyTorch for your device.
+    githubLink: "https://github.com/eumetnet-e-ai/tutorials/tree/main/tutorial7"
+    type: "Tutorial"
+    tags: ["pip", "venv", "Virtual Environments", "uv", "Pytorch", "CUDA"]
+
   - id: e-ai-basics-6
     title: "Tutorial E-AI Basics 6: CI/CD - Continuous Integration and Continuous Deployment of ML codes"
     date: "February 2025"
