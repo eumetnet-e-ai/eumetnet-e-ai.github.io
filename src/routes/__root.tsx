@@ -58,7 +58,23 @@ function RootShell({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {children}
+        <div aria-hidden className="pointer-events-none fixed inset-0 flex items-center justify-center z-10">
+          <div
+            className="text-muted-foreground"
+            style={{
+              transform: "rotate(-30deg)",
+              fontSize: 160,
+              opacity: 0.06,
+              whiteSpace: "nowrap",
+              fontWeight: 700,
+              color: "currentColor",
+            }}
+          >
+            DRAFT
+          </div>
+        </div>
+
+        <div className="relative z-0">{children}</div>
         <Scripts />
       </body>
     </html>
