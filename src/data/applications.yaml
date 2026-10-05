@@ -253,3 +253,22 @@ applications:
     packages: []
     working_groups:
       - wg-13
+  - id: hires
+    title: HiRes
+    short: High-resolution reconstruction of surface fields from coarse input fields.
+    description: |
+      FRAIM-based reconstruction of high-resolution meteorological surface fields (e.g. 2 m temperature) from input fields, producing spatially continuous gridded analyses.
+    organization_modules:
+      - post-processing
+    domains:
+      - downscaling
+      - reconstruction
+    organization: DWD
+    eumetnet_member: true
+    packages: []
+    working_groups:
+      - wg-13
+    packages:
+      - name: hires
+        url: https://gitlab.dkrz.de/dwd-ki-zentrum/apps/hires
+        maintained_by_eumetnet: true
