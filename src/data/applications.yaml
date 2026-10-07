@@ -265,7 +265,6 @@ applications:
       - reconstruction
     organization: DWD
     eumetnet_member: true
-    packages: []
     working_groups:
       - wg-13
     packages:
