@@ -271,3 +271,138 @@ applications:
       - name: hires
         url: https://gitlab.dkrz.de/dwd-ki-zentrum/apps/hires
         maintained_by_eumetnet: true
+  - id: precipitation-estimation
+    title: Satellite precipitation estimation
+    short: Precipitation estimation from geostationnary satellite observations.
+    description: |
+      Estimation of precipitation (mm/h) from 2 geostationnary infrared images (10.8 and 6.2 um), using a deep neural network.
+    organization_modules:
+      - post-processing
+    domains:
+      - precipitation
+      - satellite
+      - observations
+    organization: Meteo-France
+    eumetnet_member: true
+    working_groups:
+      - wg-13
+    packages:
+      - name: pytorch
+        url: https://pytorch.org/
+        maintained_by_eumetnet: false
+      - name: pyresample
+        url: https://pyresample.readthedocs.io
+        maintained_by_eumetnet: false
+      - name: GDAL
+        url: https://gdal.org/en/stable/
+        maintained_by_eumetnet: false
+  - id: cloud-nowcasting
+    title: Cloud cover nowcasting
+    short: Global nowcasting of cloud cover and types of cloud
+    description: |
+      Global nowcasting of cloud cover and types of cloud, up to 3 hours, using a deep neural network.
+    organization_modules:
+      - modelling
+    domains:
+      - cloud
+      - satellite
+      - nowcasting
+    organization: Meteo-France
+    eumetnet_member: true
+    working_groups:
+      - wg-6
+  - id: radar-cleaning
+    title: Cleaning of radar images
+    short: Removal of non-precipitation echoes in radar images.
+    description: |
+      Removal of non-precipitation echoes in radar images destined to TV channels, using a deep neural network.
+    organization_modules:
+      - data-curation
+    domains:
+      - radar
+      - observations
+    organization: Meteo-France
+    eumetnet_member: true
+    working_groups:
+      - wg-1
+    packages:
+      - name: pytorch
+        url: https://pytorch.org/
+        maintained_by_eumetnet: false
+      - name: pytorch lightning
+        url: https://lightning.ai/docs/pytorch/stable/
+        maintained_by_eumetnet: false
+      - name: mfai
+        url: https://github.com/meteofrance/mfai
+        maintained_by_eumetnet: true
+  - id: airport-visibility
+    title: Nowcasting of visibility near airports
+    short: Nowcasting of visibility near airports, up to 3 hours.
+    description: |
+      Nowcasting of Low Visibility Procedure at Roissy airport, up to 3 hours, using Temporal Fusion Transformers.
+    organization_modules:
+      - modelling
+    domains:
+      - airports
+      - visibility
+      - nowcasting
+    organization: Meteo-France
+    eumetnet_member: true
+    working_groups:
+      - wg-6
+    packages:
+      - name: darts
+        url: https://unit8co.github.io/darts/
+        maintained_by_eumetnet: false
+  - id: sargassum-detection
+    title: Detection of Sargassum
+    short: Detection of Sargassum on satellite images.
+    description: |
+      Detection of Sargassum algae on satellite images, using a deep neural network.
+    organization_modules:
+      - post-processing
+    domains:
+      - sargassum
+      - satellite
+      - observations
+    organization: Meteo-France
+    eumetnet_member: true
+    working_groups:
+      - wg-13
+    packages:
+      - name: pytorch
+        url: https://pytorch.org/
+        maintained_by_eumetnet: false
+      - name: pytorch lightning
+        url: https://lightning.ai/docs/pytorch/stable/
+        maintained_by_eumetnet: false
+      - name: mfai
+        url: https://github.com/meteofrance/mfai
+        maintained_by_eumetnet: true
+  - id: cams-postprocessing
+    title: Postprocessing of astmospheric pollutant ensemble model 
+    short: Postprocessing of CAMS ensemble 
+    description: |
+      ML model to produce an ensemble prediction to replace the current CAMS median ensemble.
+    organization_modules:
+      - post-processing
+    domains:
+      - air quality
+      - postprocessing
+    organization: Meteo-France
+    eumetnet_member: true
+    working_groups:
+      - wg-13
+    packages:
+      - name: pytorch
+        url: https://pytorch.org/
+        maintained_by_eumetnet: false
+      - name: pytorch lightning
+        url: https://lightning.ai/docs/pytorch/stable/
+        maintained_by_eumetnet: false
+      - name: mfai
+        url: https://github.com/meteofrance/mfai
+        maintained_by_eumetnet: true
+      - name: cams-dl-ensemble
+        url: https://github.com/meteofrance/cams-dl-ensemble
+        maintained_by_eumetnet: true
