@@ -271,3 +271,22 @@ applications:
       - name: hires
         url: https://gitlab.dkrz.de/dwd-ki-zentrum/apps/hires
         maintained_by_eumetnet: true
+  - id: prep2floods
+    title: Prep2Floods
+    short: ML-based flood indicators from precipitation and river-network data.
+    description: |
+      FRAIM-based early flood indicator: a neural network emulates a river-routing simulation corrected with river-gauge observations, turning precipitation and static terrain and river-network fields into gridded flood signals. Domain, resolution and time step are set by the training setup.
+    organization_modules:
+      - modelling
+    domains:
+      - flood_forecasting
+      - emulation
+    organization: DWD
+    eumetnet_member: true
+    packages:
+      - name: prep2floods_destine
+        url: https://gitlab.dkrz.de/dwd-ki-zentrum/apps/prep2floods_destine
+        maintained_by_eumetnet: true
+      - name: fraim
+        url: https://gitlab.dkrz.de/dwd-ki-zentrum/infrastructure/fraim
+        maintained_by_eumetnet: true
